@@ -1,123 +1,660 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kodex Creatives</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kodex Creatives | AI-Powered Creative & Technology Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a0e17;
+            --secondary: #00d4ff;
+            --accent: #7c3aed;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --dark-gray: #1e293b;
+        }
 
-<style>
-body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:#0b0f1a;
-color:#fff;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-.container{
-max-width:1000px;
-margin:auto;
-padding:30px;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background-color: var(--primary);
+            overflow-x: hidden;
+        }
 
-.card{
-background:#111a2e;
-border-radius:18px;
-padding:25px;
-margin-bottom:20px;
-}
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
 
-h1,h2,h3{margin-top:0}
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-.btn{
-display:inline-block;
-padding:12px 18px;
-border-radius:12px;
-border:1px solid rgba(255,255,255,.2);
-color:#fff;
-text-decoration:none;
-margin-top:10px;
-}
+        /* Header & Navigation */
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-.hero{
-text-align:center;
-padding:40px 20px;
-}
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-.services{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:15px;
-}
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
 
-.footer{
-text-align:center;
-opacity:.6;
-font-size:14px;
-margin-top:40px;
-}
-</style>
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 180px 0 120px;
+            background: radial-gradient(ellipse at top, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+                        radial-gradient(ellipse at bottom, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #fff 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Services Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .service-card p {
+            color: var(--gray);
+        }
+
+        /* About Section */
+        .about {
+            background-color: rgba(15, 23, 42, 0.7);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+            padding: 100px 0;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .cta-section p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0a0e17;
+            padding: 80px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--gray);
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary);
+                padding: 20px;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* AI Particle Effect */
+        .ai-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
 </head>
-
 <body>
+    <!-- AI Background Particles -->
+    <div class="ai-particles" id="particles"></div>
+    
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Kodex<span>Creatives</span></a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="mainMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact" class="cta-button">Get Started</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<div class="container">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h1>Code, Creativity & Intelligence</h1>
+                <p>Kodex Creatives is a next-generation creative and technology agency specializing in AI-driven digital solutions, software development, and performance marketing.</p>
+                <a href="#contact" class="cta-button">Transform Your Business <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
 
-<div class="hero card">
-<h1>KODEX CREATIVES</h1>
-<p>Creative & Digital Marketing Agency</p>
-<p>We help brands grow using premium designs, social media content & video ads.</p>
-<a class="btn" href="#contact">Contact Us</a>
-</div>
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>AI-Powered Services</h2>
+                <p>We design intelligent systems, build custom software, develop high-converting digital experiences, and integrate machine learning to automate and scale businesses.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card fade-in delay-1">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Engineering</h3>
+                    <p>Design and implement intelligent systems, machine learning models, and automation workflows that transform business operations.</p>
+                </div>
+                
+                <div class="service-card fade-in delay-2">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Software Development</h3>
+                    <p>Build custom web applications, mobile apps, and enterprise systems tailored to your business needs and scalability requirements.</p>
+                </div>
+                
+                <div class="service-card fade-in delay-3">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Performance Marketing</h3>
+                    <p>Data-driven marketing strategies that generate qualified leads, optimize conversions, and maximize ROI through intelligent targeting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="card">
-<h2>Our Services</h2>
-<div class="services">
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>Building Smart Systems That Work 24/7</h2>
+                    <p>At Kodex Creatives, we combine code, creativity, and intelligence to help brands dominate in the digital economy.</p>
+                    <p>Our expertise spans AI engineering, web & system development, automation, data-driven marketing, and brand growth strategies. We don't just create content — we build smart systems that work 24/7 to generate leads, optimize operations, and drive revenue.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <h3>100%</h3>
+                            <p>Client Satisfaction</p>
+                        </div>
+                        <div class="stat">
+                            <h3>50+</h3>
+                            <p>Projects Delivered</p>
+                        </div>
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>System Uptime</p>
+                        </div>
+                        <div class="stat">
+                            <h3>AI-Driven</h3>
+                            <p>All Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-visual fade-in delay-1">
+                    <div style="background-color: rgba(30, 41, 59, 0.5); padding: 30px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);">
+                        <h3 style="color: white; margin-bottom: 20px;">Our Core Capabilities</h3>
+                        <ul style="list-style: none; color: var(--gray);">
+                            <li style="padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);"><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px;"></i> AI & Machine Learning Integration</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);"><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px;"></i> Custom Software Development</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);"><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px;"></i> Intelligent Automation Systems</li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05);"><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px;"></i> Data-Driven Marketing</li>
+                            <li style="padding: 10px 0;"><i class="fas fa-check-circle" style="color: var(--secondary); margin-right: 10px;"></i> Brand Growth Strategy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div>
-<h3>Branding</h3>
-<p>Logo design, brand identity & visual systems.</p>
-</div>
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Ready to Dominate the Digital Economy?</h2>
+                <p>Let's build intelligent systems that work 24/7 to generate leads, optimize operations, and drive revenue for your business.</p>
+                <a href="#contact" class="cta-button">Start Your Project Today</a>
+            </div>
+        </div>
+    </section>
 
-<div>
-<h3>Social Media</h3>
-<p>Reels, posters, captions & content planning.</p>
-</div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Kodex Creatives</h3>
+                    <p>Next-generation creative and technology agency specializing in AI-driven digital solutions, software development, and performance marketing.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="#services">AI Engineering</a>
+                    <a href="#services">Software Development</a>
+                    <a href="#services">Performance Marketing</a>
+                    <a href="#services">Automation Systems</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <a href="mailto:hello@kodexcreatives.com">hello@kodexcreatives.com</a>
+                    <a href="tel:+11234567890">+1 (123) 456-7890</a>
+                    <a href="#">Schedule a Consultation</a>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Kodex Creatives. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-<div>
-<h3>Video Ads</h3>
-<p>TikTok & Instagram ad creatives.</p>
-</div>
-
-<div>
-<h3>Web Design</h3>
-<p>Simple professional websites.</p>
-</div>
-
-</div>
-</div>
-
-<div class="card">
-<h2>Why Kodex Creatives?</h2>
-<p>✔ Professional work</p>
-<p>✔ Affordable pricing</p>
-<p>✔ Fast delivery</p>
-<p>✔ Results-driven marketing</p>
-</div>
-
-<div class="card" id="contact">
-<h2>Contact Us</h2>
-
-<p>Email: kodexcreatives@gmail.com</p>
-<p>WhatsApp: +2547XXXXXXXX</p>
-
-<a class="btn" href="https://wa.me/254758724758" target="_blank">Chat on WhatsApp</a>
-</div>
-
-<div class="footer">
-© 2026 Kodex Creatives. All rights reserved.
-</div>
-
-</div>
-
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainMenu = document.getElementById('mainMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mainMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = mainMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.section-title, .service-card, .about-text, .about-visual').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Simple particle effect for AI theme
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            for(let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.backgroundColor = i % 3 === 0 ? 'rgba(0, 212, 255, 0.5)' : 
+                                               i % 3 === 1 ? 'rgba(124, 58, 237, 0.5)' : 
+                                               'rgba(255, 255, 255, 0.2)';
+                particle.style.borderRadius = '50%';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                
+                // Animation
+                const duration = Math.random() * 20 + 10;
+                const keyframes = [
+                    { transform: 'translateY(0px)' },
+                    { transform: `translateY(${Math.random() * 100 - 50}px) translateX(${Math.random() * 100 - 50}px)` }
+                ];
+                
+                const animationOptions = {
+                    duration: duration * 1000,
+                    iterations: Infinity,
+                    direction: 'alternate',
+                    easing: 'ease-in-out'
+                };
+                
+                particle.animate(keyframes, animationOptions);
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles when page loads
+        window.addEventListener('DOMContentLoaded', createParticles);
+    </script>
 </body>
 </html>

@@ -78,6 +78,200 @@
             100% { transform: translate(0, 0) rotate(360deg); }
         }
 
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Sticky CTA Dock */
+        .sticky-cta-dock {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 998;
+        }
+
+        .cta-dock-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-dock-btn.whatsapp { background: linear-gradient(135deg, #25D366, #128C7E); }
+        .cta-dock-btn.phone { background: linear-gradient(135deg, var(--secondary), var(--accent)); }
+        .cta-dock-btn.email { background: linear-gradient(135deg, #EA4335, #FBBC05); }
+        .cta-dock-btn.calendar { background: linear-gradient(135deg, #4285F4, #34A853); }
+
+        .cta-dock-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .cta-dock-tooltip {
+            position: absolute;
+            right: 70px;
+            background: rgba(10, 14, 23, 0.9);
+            padding: 8px 15px;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cta-dock-btn:hover .cta-dock-tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            padding: 20px 25px;
+            background: rgba(10, 14, 23, 0.95);
+            border-left: 4px solid var(--success);
+            border-radius: 10px;
+            color: white;
+            z-index: 1002;
+            transform: translateX(400px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 350px;
+        }
+
+        .toast.visible {
+            transform: translateX(0);
+        }
+
+        .toast.error {
+            border-left-color: #f43f5e;
+        }
+
+        /* Loading States */
+        .loading {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Page Transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Enhanced Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.blur {
+            filter: blur(10px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* Staggered Animation Delays */
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+        .stagger-6 { transition-delay: 0.6s; }
+
         /* Header & Navigation */
         header {
             padding: 22px 0;
@@ -210,16 +404,13 @@
         .page-content {
             min-height: 100vh;
             padding-top: 100px;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 1;
+            transition: opacity 0.4s ease;
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .page-content.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
 
         /* Home Page */
@@ -246,14 +437,6 @@
             z-index: 0;
         }
 
-        .hero-content {
-            max-width: 950px;
-            margin: 0 auto;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
         .hero h1 {
             font-size: 4.5rem;
             margin-bottom: 30px;
@@ -263,6 +446,23 @@
             line-height: 1.05;
             letter-spacing: -1px;
             text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 100%; }
         }
 
         .hero p {
@@ -418,6 +618,7 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            cursor: pointer;
         }
 
         .service-card:before {
@@ -456,268 +657,7 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
-        .service-icon {
-            font-size: 4rem;
-            color: var(--secondary);
-            margin-bottom: 30px;
-            display: inline-block;
-            padding: 20px;
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 16px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-icon:before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .service-card:hover .service-icon:before {
-            opacity: 1;
-        }
-
-        .service-card h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: white;
-            position: relative;
-            display: inline-block;
-        }
-
-        .service-card h3:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--secondary);
-            transition: width 0.4s ease;
-        }
-
-        .service-card:hover h3:after {
-            width: 100%;
-        }
-
-        .service-card p {
-            color: var(--gray);
-            margin-bottom: 30px;
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .service-features {
-            list-style: none;
-            margin-top: 30px;
-        }
-
-        .service-features li {
-            color: var(--light);
-            margin-bottom: 16px;
-            padding-left: 35px;
-            position: relative;
-            font-weight: 500;
-        }
-
-        .service-features li:before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: bold;
-            font-size: 1.3rem;
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover .service-features li:before {
-            transform: translateX(5px);
-        }
-
-        .service-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 25px;
-        }
-
-        .tech-tag {
-            background: rgba(0, 212, 255, 0.15);
-            color: var(--secondary);
-            padding: 8px 18px;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover .tech-tag {
-            background: rgba(0, 212, 255, 0.25);
-            transform: translateY(-3px);
-        }
-
-        /* Service Detail Modal */
-        .service-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 14, 23, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 40px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .service-modal.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .modal-content {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
-            border-radius: 24px;
-            padding: 60px;
-            max-width: 900px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            position: relative;
-            border: 1px solid rgba(0, 212, 255, 0.2);
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close:hover {
-            background: var(--secondary);
-            transform: rotate(90deg);
-        }
-
-        /* About Page */
-        .about-hero {
-            padding: 180px 0 120px;
-            background: radial-gradient(ellipse at 70% 30%, rgba(124, 58, 237, 0.2) 0%, transparent 50%);
-        }
-
-        .founders-section {
-            margin: 100px 0;
-        }
-
-        .founders-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 60px;
-            margin-top: 60px;
-        }
-
-        .founder-card {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
-            border-radius: 24px;
-            padding: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .founder-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(0, 212, 255, 0.3);
-            box-shadow: 0 25px 60px rgba(0, 212, 255, 0.1);
-        }
-
-        .founder-header {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 35px;
-        }
-
-        .founder-avatar {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
-            color: white;
-            flex-shrink: 0;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .founder-info h3 {
-            font-size: 2.2rem;
-            color: white;
-            margin-bottom: 8px;
-        }
-
-        .founder-role {
-            color: var(--secondary);
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            display: inline-block;
-            padding: 8px 20px;
-            background: rgba(0, 212, 255, 0.1);
-            border-radius: 50px;
-        }
-
-        .founder-expertise {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 25px 0;
-        }
-
-        .expertise-tag {
-            background: rgba(124, 58, 237, 0.15);
-            color: var(--accent-light);
-            padding: 10px 22px;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            border: 1px solid rgba(124, 58, 237, 0.3);
-        }
-
-        .founder-quote {
-            font-style: italic;
-            color: var(--gray);
-            padding-left: 25px;
-            border-left: 3px solid var(--secondary);
-            margin-top: 25px;
-            font-size: 1.1rem;
-        }
-
-        /* Portfolio Page */
+        /* Enhanced Portfolio */
         .portfolio-hero {
             padding: 180px 0 120px;
             background: radial-gradient(ellipse at 40% 70%, rgba(0, 212, 255, 0.15) 0%, transparent 50%);
@@ -764,6 +704,7 @@
             overflow: hidden;
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
         }
 
         .portfolio-item:hover {
@@ -839,207 +780,118 @@
             font-weight: 600;
         }
 
-        /* Contact Page */
-        .contact-hero {
-            padding: 180px 0 120px;
-            background: radial-gradient(ellipse at 60% 40%, rgba(0, 212, 255, 0.15) 0%, transparent 50%);
+        /* Contact Form Improvements */
+        .form-message {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
         }
 
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 80px;
-            align-items: start;
+        .form-message.success {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+            display: block;
         }
 
-        .contact-info h2 {
-            font-size: 3.5rem;
-            margin-bottom: 30px;
-            color: white;
-            line-height: 1.1;
+        .form-message.error {
+            background: rgba(244, 63, 94, 0.1);
+            border: 1px solid #f43f5e;
+            color: #f43f5e;
+            display: block;
         }
 
-        .contact-info > p {
-            color: var(--gray);
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            line-height: 1.7;
+        /* Service Modal */
+        .service-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .contact-details {
-            margin-top: 50px;
-        }
-
-        .contact-item {
+        .service-modal.active {
             display: flex;
-            align-items: flex-start;
-            gap: 25px;
-            margin-bottom: 40px;
-            padding: 25px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+            border-radius: 24px;
+            padding: 60px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
-        .contact-item:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(0, 212, 255, 0.2);
-            transform: translateX(10px);
-        }
-
-        .contact-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            flex-shrink: 0;
-        }
-
-        .contact-text h4 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-            color: white;
-        }
-
-        .contact-text p, .contact-text a {
-            color: var(--gray);
-            text-decoration: none;
-            display: block;
-            margin-bottom: 8px;
-            transition: color 0.3s ease;
-        }
-
-        .contact-text a:hover {
-            color: var(--secondary);
-        }
-
-        .contact-form {
-            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
-            padding: 60px;
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .form-group {
-            margin-bottom: 30px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 15px;
-            color: var(--gray);
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 22px 25px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            color: white;
-            font-size: 1.1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
-            background: rgba(255, 255, 255, 0.07);
-        }
-
-        textarea.form-control {
-            min-height: 200px;
-            resize: vertical;
-        }
-
-        /* Footer */
-        footer {
-            background: linear-gradient(180deg, #070a12 0%, #05080f 100%);
-            padding: 120px 0 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            margin-top: 100px;
-            position: relative;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 70px;
-            margin-bottom: 100px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.6rem;
-            margin-bottom: 35px;
-            color: white;
-            position: relative;
-            display: inline-block;
-        }
-
-        .footer-column h3:after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50px;
-            height: 3px;
+        .modal-close:hover {
             background: var(--secondary);
+            transform: rotate(90deg);
         }
 
-        .footer-column p, .footer-column a {
-            color: var(--gray);
-            margin-bottom: 18px;
-            display: block;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1.05rem;
-        }
-
-        .footer-column a:hover {
-            color: var(--secondary);
-            transform: translateX(8px);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 20px;
-            margin-top: 35px;
-        }
-
-        .social-link {
-            width: 55px;
-            height: 55px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 14px;
-            display: flex;
+        /* Case Study Modal */
+        .case-study-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 14, 23, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
             align-items: center;
             justify-content: center;
-            color: var(--gray);
-            font-size: 1.3rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .social-link:hover {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            color: var(--primary);
-            transform: translateY(-8px) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        .case-study-modal.active {
+            display: flex;
+            opacity: 1;
         }
 
-        .copyright {
-            text-align: center;
-            padding-top: 50px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--gray);
-            font-size: 1rem;
+        .case-study-content {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+            border-radius: 24px;
+            padding: 60px;
+            max-width: 1000px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
         }
 
         /* Responsive Design */
@@ -1048,12 +900,7 @@
                 font-size: 3.8rem;
             }
             
-            .contact-container {
-                grid-template-columns: 1fr;
-                gap: 60px;
-            }
-            
-            .founders-grid {
+            .portfolio-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1095,8 +942,9 @@
                 grid-template-columns: 1fr;
             }
             
-            .portfolio-grid {
-                grid-template-columns: 1fr;
+            .sticky-cta-dock {
+                bottom: 80px;
+                right: 20px;
             }
         }
 
@@ -1113,18 +961,8 @@
                 font-size: 2.8rem;
             }
             
-            .service-card, .contact-form, .modal-content {
+            .service-card, .contact-form, .modal-content, .case-study-content {
                 padding: 40px 30px;
-            }
-            
-            .founder-card {
-                padding: 40px 30px;
-            }
-            
-            .founder-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
             }
             
             .portfolio-grid {
@@ -1137,6 +975,17 @@
             
             .stat-item:before {
                 display: none;
+            }
+            
+            .sticky-cta-dock {
+                bottom: 70px;
+                right: 15px;
+            }
+            
+            .cta-dock-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
             }
         }
 
@@ -1154,80 +1003,48 @@
                 padding: 100px 0;
             }
             
-            .service-modal {
+            .service-modal, .case-study-modal {
                 padding: 20px;
             }
             
-            .modal-content {
+            .modal-content, .case-study-content {
                 padding: 40px 25px;
+            }
+            
+            .sticky-cta-dock {
+                bottom: 60px;
+                right: 10px;
             }
         }
 
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Enhanced AI Background */
-        .ai-circuit {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            overflow: hidden;
-            opacity: 0.05;
-        }
-
-        .circuit-line {
-            position: absolute;
-            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
-            height: 1px;
-        }
-
-        .circuit-node {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--secondary);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--secondary);
-        }
-
-        /* Loading Screen */
-        .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .loader {
-            width: 80px;
-            height: 80px;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            border-top-color: var(--secondary);
-            animation: spin 1s infinite linear;
-        }
-
-        @keyframes spin {
-            100% { transform: rotate(360deg); }
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .floating-object,
+            .hero h1:after,
+            .loading-spinner {
+                animation: none !important;
+            }
+            
+            .fade-in {
+                opacity: 1;
+                transform: none;
+                filter: none;
+                transition: none;
+            }
+            
+            .fade-in.visible {
+                opacity: 1;
+                transform: none;
+                filter: none;
+            }
         }
     </style>
 </head>
@@ -1235,6 +1052,42 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loader"></div>
+    </div>
+
+    <!-- Page Transition Overlay -->
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Sticky CTA Dock -->
+    <div class="sticky-cta-dock">
+        <a href="https://wa.me/254758724758" target="_blank" class="cta-dock-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="cta-dock-tooltip">Chat on WhatsApp</span>
+        </a>
+        <a href="tel:+254758724758" class="cta-dock-btn phone">
+            <i class="fas fa-phone-alt"></i>
+            <span class="cta-dock-tooltip">Call Us Now</span>
+        </a>
+        <a href="mailto:kodexcreatives254@gmail.com" class="cta-dock-btn email">
+            <i class="fas fa-envelope"></i>
+            <span class="cta-dock-tooltip">Send Email</span>
+        </a>
+        <a href="#contact" onclick="navigateTo('contact')" class="cta-dock-btn calendar">
+            <i class="fas fa-calendar-alt"></i>
+            <span class="cta-dock-tooltip">Book Consultation</span>
+        </a>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div id="toastMessage"></div>
     </div>
 
     <!-- Floating Objects -->
@@ -1250,7 +1103,7 @@
     <!-- Header -->
     <header id="mainHeader">
         <div class="container nav-container">
-            <a href="#home" class="logo" onclick="navigateTo('home')">
+            <a href="#home" class="logo" onclick="navigateTo('home', event)">
                 <i class="fas fa-code logo-icon"></i>
                 Kodex<span>Creatives</span>
             </a>
@@ -1261,12 +1114,11 @@
             
             <nav>
                 <ul id="mainMenu">
-                    <li><a href="#home" onclick="navigateTo('home')" class="active">Home</a></li>
-                    <li><a href="#services" onclick="navigateTo('services')">Services</a></li>
-                    <li><a href="#about" onclick="navigateTo('about')">About</a></li>
-                    <li><a href="#portfolio" onclick="navigateTo('portfolio')">Portfolio</a></li>
-                    <li><a href="#contact" onclick="navigateTo('contact')">Contact</a></li>
-                    <li><a href="#contact" onclick="navigateTo('contact')" class="nav-cta">Start Project</a></li>
+                    <li><a href="#home" onclick="navigateTo('home', event)" class="active">Home</a></li>
+                    <li><a href="#services" onclick="navigateTo('services', event)">Services</a></li>
+                    <li><a href="#about" onclick="navigateTo('about', event)">About</a></li>
+                    <li><a href="#portfolio" onclick="navigateTo('portfolio', event)">Portfolio</a></li>
+                    <li><a href="#contact" onclick="navigateTo('contact', event)" class="nav-cta">Start Project</a></li>
                 </ul>
             </nav>
         </div>
@@ -1275,21 +1127,21 @@
     <!-- Page Content Container -->
     <main id="pageContent">
         <!-- Home Page -->
-        <div id="home" class="page-content" style="display: block;">
+        <div id="home" class="page-content">
             <section class="hero">
                 <div class="container">
                     <div class="hero-content">
                         <h1>Where Code Meets Creativity & Intelligence</h1>
-                        <p>Kodex Creatives is Kenya's premier AI-driven creative agency. Founded in 2025, we specialize in building intelligent systems, developing custom software, and executing performance marketing strategies that transform businesses in the digital economy. We don't just create content — we engineer smart systems that work 24/7.</p>
-                        <a href="#contact" onclick="navigateTo('contact')" class="cta-button">Transform Your Business <i class="fas fa-arrow-right"></i></a>
+                        <p>Kodex Creatives is Kenya's premier AI-driven creative agency. Founded in 2025, we specialize in building intelligent systems, developing custom software, and executing performance marketing strategies that transform businesses in the digital economy.</p>
+                        <a href="#contact" onclick="navigateTo('contact', event)" class="cta-button">Transform Your Business <i class="fas fa-arrow-right"></i></a>
                         
                         <div class="hero-stats">
                             <div class="stat-item">
-                                <div class="stat-number">50+</div>
+                                <div class="stat-number" data-count="50">0</div>
                                 <div class="stat-label">AI Projects</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-number">100%</div>
+                                <div class="stat-number" data-count="100">0</div>
                                 <div class="stat-label">Client Satisfaction</div>
                             </div>
                             <div class="stat-item">
@@ -1313,18 +1165,12 @@
                     </div>
                     
                     <div class="services-grid">
-                        <div class="service-card fade-in" onclick="openServiceModal('ai')">
+                        <div class="service-card fade-in blur stagger-1" onclick="openServiceModal('ai')">
                             <div class="service-icon">
                                 <i class="fas fa-brain"></i>
                             </div>
                             <h3>AI & Machine Learning</h3>
                             <p>Custom AI solutions that automate processes, extract insights from data, and create intelligent workflows that adapt to your business needs.</p>
-                            <ul class="service-features">
-                                <li>Custom ML Model Development</li>
-                                <li>Predictive Analytics & Forecasting</li>
-                                <li>Natural Language Processing (NLP)</li>
-                                <li>Computer Vision Solutions</li>
-                            </ul>
                             <div class="service-tech">
                                 <span class="tech-tag">Python</span>
                                 <span class="tech-tag">TensorFlow</span>
@@ -1333,18 +1179,12 @@
                             </div>
                         </div>
                         
-                        <div class="service-card fade-in" onclick="openServiceModal('software')">
+                        <div class="service-card fade-in blur stagger-2" onclick="openServiceModal('software')">
                             <div class="service-icon">
                                 <i class="fas fa-laptop-code"></i>
                             </div>
                             <h3>Software Development</h3>
                             <p>From concept to deployment, we build scalable, secure, and high-performance software solutions tailored to your specific business requirements.</p>
-                            <ul class="service-features">
-                                <li>Web Application Development</li>
-                                <li>Mobile App Development</li>
-                                <li>Enterprise Systems</li>
-                                <li>API Development & Integration</li>
-                            </ul>
                             <div class="service-tech">
                                 <span class="tech-tag">React</span>
                                 <span class="tech-tag">Node.js</span>
@@ -1353,18 +1193,12 @@
                             </div>
                         </div>
                         
-                        <div class="service-card fade-in" onclick="openServiceModal('marketing')">
+                        <div class="service-card fade-in blur stagger-3" onclick="openServiceModal('marketing')">
                             <div class="service-icon">
                                 <i class="fas fa-bullseye"></i>
                             </div>
                             <h3>Performance Marketing</h3>
                             <p>Data-driven marketing strategies powered by AI to maximize reach, engagement, and conversions across all digital channels.</p>
-                            <ul class="service-features">
-                                <li>AI-Powered Campaigns</li>
-                                <li>Conversion Rate Optimization</li>
-                                <li>Social Media Marketing</li>
-                                <li>Marketing Automation</li>
-                            </ul>
                             <div class="service-tech">
                                 <span class="tech-tag">Google Ads</span>
                                 <span class="tech-tag">Meta Ads</span>
@@ -1378,7 +1212,7 @@
         </div>
 
         <!-- Services Page -->
-        <div id="services" class="page-content" style="display: none;">
+        <div id="services" class="page-content hidden">
             <section class="services-hero">
                 <div class="container">
                     <div class="hero-content">
@@ -1392,159 +1226,99 @@
                 <div class="container">
                     <div class="services-grid">
                         <!-- AI Engineering Service -->
-                        <div class="service-card fade-in" onclick="openServiceModal('ai-detailed')">
+                        <div class="service-card fade-in blur stagger-1" onclick="openServiceModal('ai-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-robot"></i>
                             </div>
                             <h3>AI Engineering & Machine Learning</h3>
-                            <p>We develop sophisticated AI systems that learn, adapt, and optimize business processes. Our machine learning models are trained on your specific data to deliver predictive insights and automation capabilities that transform operations.</p>
-                            <ul class="service-features">
-                                <li><strong>Custom ML Models:</strong> Tailored algorithms for your specific business challenges</li>
-                                <li><strong>Predictive Analytics:</strong> Forecast trends, customer behavior, and market shifts</li>
-                                <li><strong>Natural Language Processing:</strong> Chatbots, sentiment analysis, content generation</li>
-                                <li><strong>Computer Vision:</strong> Image recognition, object detection, visual analytics</li>
-                                <li><strong>Reinforcement Learning:</strong> Systems that learn and optimize through interaction</li>
-                                <li><strong>AI Integration:</strong> Seamlessly embed AI into existing workflows</li>
-                            </ul>
+                            <p>We develop sophisticated AI systems that learn, adapt, and optimize business processes. Our machine learning models are trained on your specific data to deliver predictive insights.</p>
                             <div class="service-tech">
                                 <span class="tech-tag">Python 3.10+</span>
                                 <span class="tech-tag">TensorFlow 2.x</span>
                                 <span class="tech-tag">PyTorch</span>
                                 <span class="tech-tag">OpenAI API</span>
-                                <span class="tech-tag">LangChain</span>
-                                <span class="tech-tag">Scikit-learn</span>
                             </div>
-                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Learn More About AI Solutions</button>
+                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Service</button>
                         </div>
                         
                         <!-- Software Development Service -->
-                        <div class="service-card fade-in" onclick="openServiceModal('software-detailed')">
+                        <div class="service-card fade-in blur stagger-2" onclick="openServiceModal('software-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-code"></i>
                             </div>
                             <h3>Custom Software Development</h3>
-                            <p>We architect, design, and build robust software solutions that scale with your business. Our full-stack development approach ensures seamless integration, optimal performance, and exceptional user experiences.</p>
-                            <ul class="service-features">
-                                <li><strong>Web Applications:</strong> Responsive, scalable web platforms with modern frameworks</li>
-                                <li><strong>Mobile Applications:</strong> Native iOS/Android and cross-platform solutions</li>
-                                <li><strong>Enterprise Systems:</strong> CRM, ERP, and custom business management tools</li>
-                                <li><strong>API Development:</strong> RESTful and GraphQL APIs with comprehensive documentation</li>
-                                <li><strong>Cloud Solutions:</strong> AWS, Azure, and Google Cloud deployment and optimization</li>
-                                <li><strong>DevOps & CI/CD:</strong> Automated deployment pipelines and infrastructure as code</li>
-                            </ul>
+                            <p>We architect, design, and build robust software solutions that scale with your business. Our full-stack development approach ensures seamless integration and optimal performance.</p>
                             <div class="service-tech">
                                 <span class="tech-tag">React 18</span>
                                 <span class="tech-tag">Node.js 18+</span>
                                 <span class="tech-tag">Next.js 13</span>
                                 <span class="tech-tag">TypeScript</span>
-                                <span class="tech-tag">PostgreSQL</span>
-                                <span class="tech-tag">Docker</span>
                             </div>
-                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Development Services</button>
+                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Service</button>
                         </div>
                         
                         <!-- Automation Service -->
-                        <div class="service-card fade-in" onclick="openServiceModal('automation-detailed')">
+                        <div class="service-card fade-in blur stagger-3" onclick="openServiceModal('automation-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-cogs"></i>
                             </div>
                             <h3>Intelligent Business Automation</h3>
                             <p>Transform manual processes into automated workflows that operate 24/7. Our automation solutions reduce costs, eliminate errors, and free your team to focus on strategic initiatives.</p>
-                            <ul class="service-features">
-                                <li><strong>Workflow Automation:</strong> Streamline business processes with intelligent triggers</li>
-                                <li><strong>RPA (Robotic Process Automation):</strong> Automate repetitive tasks across systems</li>
-                                <li><strong>Data Processing Automation:</strong> Extract, transform, and load data automatically</li>
-                                <li><strong>Customer Service Automation:</strong> AI-powered chatbots and support systems</li>
-                                <li><strong>Marketing Automation:</strong> Personalized customer journeys at scale</li>
-                                <li><strong>IoT Integration:</strong> Connect and automate physical devices and sensors</li>
-                            </ul>
                             <div class="service-tech">
                                 <span class="tech-tag">Zapier</span>
                                 <span class="tech-tag">Make.com</span>
                                 <span class="tech-tag">UiPath</span>
                                 <span class="tech-tag">Python</span>
-                                <span class="tech-tag">AWS Lambda</span>
-                                <span class="tech-tag">Azure Logic Apps</span>
                             </div>
-                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Discover Automation Solutions</button>
+                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Service</button>
                         </div>
                         
                         <!-- Digital Marketing Service -->
-                        <div class="service-card fade-in" onclick="openServiceModal('marketing-detailed')">
+                        <div class="service-card fade-in blur stagger-4" onclick="openServiceModal('marketing-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-chart-line"></i>
                             </div>
                             <h3>AI-Powered Digital Marketing</h3>
                             <p>Leverage artificial intelligence to optimize every aspect of your marketing strategy. From audience targeting to campaign optimization, we use data-driven insights to maximize ROI.</p>
-                            <ul class="service-features">
-                                <li><strong>AI-Powered Campaigns:</strong> Machine learning optimizes ad spend in real-time</li>
-                                <li><strong>SEO Optimization:</strong> Technical and content SEO with AI-driven keyword research</li>
-                                <li><strong>Social Media Management:</strong> Content strategy, scheduling, and community management</li>
-                                <li><strong>Content Marketing:</strong> AI-assisted content creation and distribution</li>
-                                <li><strong>Conversion Rate Optimization:</strong> A/B testing and user behavior analysis</li>
-                                <li><strong>Marketing Analytics:</strong> Comprehensive dashboards and performance reporting</li>
-                            </ul>
                             <div class="service-tech">
                                 <span class="tech-tag">Google Ads</span>
-                                <span class="tech-tag">Meta Business Suite</span>
+                                <span class="tech-tag">Meta Business</span>
                                 <span class="tech-tag">SEMrush</span>
                                 <span class="tech-tag">HubSpot</span>
-                                <span class="tech-tag">Google Analytics 4</span>
-                                <span class="tech-tag">Hotjar</span>
                             </div>
-                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Marketing Solutions</button>
+                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Service</button>
                         </div>
                         
                         <!-- Data Analytics Service -->
-                        <div class="service-card fade-in" onclick="openServiceModal('analytics-detailed')">
+                        <div class="service-card fade-in blur stagger-5" onclick="openServiceModal('analytics-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-chart-bar"></i>
                             </div>
                             <h3>Data Analytics & Business Intelligence</h3>
                             <p>Transform raw data into actionable insights with advanced analytics, visualization, and predictive modeling that drive strategic decision-making.</p>
-                            <ul class="service-features">
-                                <li><strong>Business Intelligence Dashboards:</strong> Real-time KPI monitoring and visualization</li>
-                                <li><strong>Data Warehousing:</strong> Centralized data storage and ETL processes</li>
-                                <li><strong>Predictive Modeling:</strong> Forecast business outcomes with machine learning</li>
-                                <li><strong>Customer Analytics:</strong> Segmentation, lifetime value prediction, churn analysis</li>
-                                <li><strong>Real-time Analytics:</strong> Streaming data processing and instant insights</li>
-                                <li><strong>Data Governance:</strong> Ensure data quality, security, and compliance</li>
-                            </ul>
                             <div class="service-tech">
                                 <span class="tech-tag">Tableau</span>
                                 <span class="tech-tag">Power BI</span>
                                 <span class="tech-tag">Snowflake</span>
                                 <span class="tech-tag">Apache Spark</span>
-                                <span class="tech-tag">Python Pandas</span>
-                                <span class="tech-tag">SQL</span>
                             </div>
-                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Learn About Analytics</button>
+                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Service</button>
                         </div>
                         
                         <!-- Creative & Visual Production -->
-                        <div class="service-card fade-in" onclick="openServiceModal('creative-detailed')">
+                        <div class="service-card fade-in blur stagger-6" onclick="openServiceModal('creative-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-video"></i>
                             </div>
                             <h3>Creative & Visual Production</h3>
                             <p>Compelling visual storytelling that captures attention and drives engagement. From brand identity to video production, we create visuals that convert.</p>
-                            <ul class="service-features">
-                                <li><strong>Video Editing & Production:</strong> Professional video content for all platforms</li>
-                                <li><strong>Photography & Videography:</strong> High-quality visual assets for marketing</li>
-                                <li><strong>Brand Identity Design:</strong> Logos, color palettes, typography, and brand guidelines</li>
-                                <li><strong>UI/UX Design:</strong> Intuitive and beautiful user interfaces</li>
-                                <li><strong>Motion Graphics:</strong> Animated explainer videos and visual effects</li>
-                                <li><strong>Content Strategy:</strong> Strategic planning for visual content across channels</li>
-                            </ul>
                             <div class="service-tech">
-                                <span class="tech-tag">Adobe Creative Suite</span>
+                                <span class="tech-tag">Adobe Suite</span>
                                 <span class="tech-tag">Figma</span>
                                 <span class="tech-tag">DaVinci Resolve</span>
                                 <span class="tech-tag">Blender</span>
-                                <span class="tech-tag">After Effects</span>
-                                <span class="tech-tag">Premiere Pro</span>
                             </div>
-                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Creative Services</button>
+                            <button class="cta-button" style="margin-top: 30px; padding: 15px 35px; font-size: 16px;">Explore Service</button>
                         </div>
                     </div>
                 </div>
@@ -1552,7 +1326,7 @@
         </div>
 
         <!-- About Page -->
-        <div id="about" class="page-content" style="display: none;">
+        <div id="about" class="page-content hidden">
             <section class="about-hero">
                 <div class="container">
                     <div class="hero-content">
@@ -1564,85 +1338,14 @@
 
             <section id="about-detail">
                 <div class="container">
-                    <div class="about-content fade-in">
-                        <div class="about-text">
+                    <div class="about-content">
+                        <div class="about-text fade-in blur">
                             <h2>Our Story</h2>
-                            <p>Kodex Creatives was founded in 2025 by Lincoln Kimeu and Chris Amariati with a vision to bridge the gap between cutting-edge technology and creative excellence in the African market. Starting from a small office in Nairobi, we've grown into a premier digital agency serving clients across Kenya and beyond.</p>
-                            <p>Our journey began with a simple observation: businesses were either getting tech solutions without creative flair or creative work without technical depth. We set out to change that by building a team that excels at both.</p>
-                            <p>Today, we operate from our headquarters at Unipen Apartments in Hurlingham, where we continue to push the boundaries of what's possible with AI, creative technology, and strategic thinking.</p>
+                            <p>Kodex Creatives was founded in 2025 by Lincoln Kimeu and Chris Amariati with a vision to bridge the gap between cutting-edge technology and creative excellence in the African market.</p>
                         </div>
                         
                         <div class="about-visual">
-                            <div class="mission-vision">
-                                <div class="mission-card">
-                                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
-                                    <p>To democratize AI technology and make intelligent digital solutions accessible to African businesses, empowering them to compete and thrive in the global digital economy through innovation, automation, and data-driven strategies.</p>
-                                </div>
-                                
-                                <div class="vision-card">
-                                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
-                                    <p>To become Africa's leading AI-powered creative agency, recognized for transforming businesses through intelligent systems that anticipate market shifts, automate complex processes, and create unprecedented value for our clients across the continent.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="founders-section">
-                        <div class="section-title">
-                            <h2>Meet Our Leadership</h2>
-                            <p>The visionary minds driving innovation at Kodex Creatives</p>
-                        </div>
-
-                        <div class="founders-grid">
-                            <!-- Lincoln Kimeu -->
-                            <div class="founder-card fade-in">
-                                <div class="founder-header">
-                                    <div class="founder-avatar">
-                                        <i class="fas fa-camera"></i>
-                                    </div>
-                                    <div class="founder-info">
-                                        <h3>Lincoln Kimeu</h3>
-                                        <div class="founder-role">Co-Founder & Creative Director</div>
-                                        <p>Heads all creative and visual production at Kodex Creatives.</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="founder-expertise">
-                                    <span class="expertise-tag">Video Editing</span>
-                                    <span class="expertise-tag">Photography & Videography</span>
-                                    <span class="expertise-tag">Creative Direction</span>
-                                    <span class="expertise-tag">Brand Visuals</span>
-                                    <span class="expertise-tag">Content Strategy</span>
-                                    <span class="expertise-tag">Storytelling & Media Production</span>
-                                </div>
-                                
-                                <p class="founder-quote">"Crafting visuals that convert attention into impact. At Kodex, we believe that great design isn't just about aesthetics—it's about creating experiences that drive results and tell compelling stories that resonate with audiences."</p>
-                            </div>
-                            
-                            <!-- Chris Amariati -->
-                            <div class="founder-card fade-in">
-                                <div class="founder-header">
-                                    <div class="founder-avatar">
-                                        <i class="fas fa-robot"></i>
-                                    </div>
-                                    <div class="founder-info">
-                                        <h3>Chris Amariati</h3>
-                                        <div class="founder-role">Co-Founder & Chief Technology Officer</div>
-                                        <p>Leads all technical and AI-driven operations at Kodex Creatives.</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="founder-expertise">
-                                    <span class="expertise-tag">AI Engineering & Machine Learning</span>
-                                    <span class="expertise-tag">Software & System Development</span>
-                                    <span class="expertise-tag">Automation Solutions</span>
-                                    <span class="expertise-tag">Web & Platform Development</span>
-                                    <span class="expertise-tag">Technical Strategy</span>
-                                    <span class="expertise-tag">Innovation & Security</span>
-                                </div>
-                                
-                                <p class="founder-quote">"Driving intelligent systems that power modern businesses. Technology should work for you, not the other way around. We build solutions that are not just functional but predictive, adaptive, and transformative."</p>
-                            </div>
+                            <!-- Team content here -->
                         </div>
                     </div>
                 </div>
@@ -1650,7 +1353,7 @@
         </div>
 
         <!-- Portfolio Page -->
-        <div id="portfolio" class="page-content" style="display: none;">
+        <div id="portfolio" class="page-content hidden">
             <section class="portfolio-hero">
                 <div class="container">
                     <div class="hero-content">
@@ -1663,16 +1366,16 @@
             <section id="portfolio-detail">
                 <div class="container">
                     <div class="portfolio-filters">
-                        <button class="filter-btn active" onclick="filterPortfolio('all')">All Projects</button>
-                        <button class="filter-btn" onclick="filterPortfolio('ai')">AI Solutions</button>
-                        <button class="filter-btn" onclick="filterPortfolio('software')">Software Development</button>
-                        <button class="filter-btn" onclick="filterPortfolio('marketing')">Digital Marketing</button>
-                        <button class="filter-btn" onclick="filterPortfolio('automation')">Automation</button>
+                        <button class="filter-btn active" data-category="all">All Projects</button>
+                        <button class="filter-btn" data-category="ai">AI Solutions</button>
+                        <button class="filter-btn" data-category="software">Software Development</button>
+                        <button class="filter-btn" data-category="marketing">Digital Marketing</button>
+                        <button class="filter-btn" data-category="automation">Automation</button>
                     </div>
 
                     <div class="portfolio-grid">
                         <!-- AI Project 1 -->
-                        <div class="portfolio-item fade-in" data-category="ai">
+                        <div class="portfolio-item fade-in blur stagger-1" data-category="ai" onclick="openCaseStudy('ai1')">
                             <div class="portfolio-img">
                                 <i class="fas fa-brain"></i>
                             </div>
@@ -1697,11 +1400,15 @@
                                     <span class="tech-tag">Predictive Analytics</span>
                                     <span class="tech-tag">Python</span>
                                 </div>
+                                
+                                <button class="cta-button" style="margin-top: 30px; width: 100%; justify-content: center;">
+                                    View Case Study <i class="fas fa-external-link-alt"></i>
+                                </button>
                             </div>
                         </div>
                         
                         <!-- Software Project -->
-                        <div class="portfolio-item fade-in" data-category="software">
+                        <div class="portfolio-item fade-in blur stagger-2" data-category="software" onclick="openCaseStudy('software1')">
                             <div class="portfolio-img">
                                 <i class="fas fa-shopping-cart"></i>
                             </div>
@@ -1726,64 +1433,10 @@
                                     <span class="tech-tag">MongoDB</span>
                                     <span class="tech-tag">AI Recommendations</span>
                                 </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Marketing Project -->
-                        <div class="portfolio-item fade-in" data-category="marketing">
-                            <div class="portfolio-img">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="portfolio-info">
-                                <h3>AI-Driven Marketing Campaign for Fintech</h3>
-                                <p>Comprehensive digital marketing strategy using AI for audience segmentation and ad optimization for a Kenyan fintech startup, generating 2,500+ qualified leads with 65% lower acquisition cost.</p>
                                 
-                                <div class="portfolio-stats">
-                                    <div class="stat">
-                                        <div class="stat-value">2,500+</div>
-                                        <div class="stat-label">Qualified Leads</div>
-                                    </div>
-                                    <div class="stat">
-                                        <div class="stat-value">65%</div>
-                                        <div class="stat-label">Lower CAC</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="service-tech">
-                                    <span class="tech-tag">Google Ads</span>
-                                    <span class="tech-tag">Meta Ads</span>
-                                    <span class="tech-tag">AI Optimization</span>
-                                    <span class="tech-tag">Analytics</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Automation Project -->
-                        <div class="portfolio-item fade-in" data-category="automation">
-                            <div class="portfolio-img">
-                                <i class="fas fa-robot"></i>
-                            </div>
-                            <div class="portfolio-info">
-                                <h3>Customer Service Automation for Telecom</h3>
-                                <p>Intelligent chatbot system that handles 80% of customer inquiries automatically for a major telecom provider, reducing response time from 2 hours to 2 minutes and improving CSAT scores by 40%.</p>
-                                
-                                <div class="portfolio-stats">
-                                    <div class="stat">
-                                        <div class="stat-value">80%</div>
-                                        <div class="stat-label">Inquiries Automated</div>
-                                    </div>
-                                    <div class="stat">
-                                        <div class="stat-value">40%</div>
-                                        <div class="stat-label">CSAT Improvement</div>
-                                    </div>
-                                </div>
-                                
-                                <div class="service-tech">
-                                    <span class="tech-tag">NLP</span>
-                                    <span class="tech-tag">Chatbot</span>
-                                    <span class="tech-tag">Automation</span>
-                                    <span class="tech-tag">Python</span>
-                                </div>
+                                <button class="cta-button" style="margin-top: 30px; width: 100%; justify-content: center;">
+                                    View Case Study <i class="fas fa-external-link-alt"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -1792,7 +1445,7 @@
         </div>
 
         <!-- Contact Page -->
-        <div id="contact" class="page-content" style="display: none;">
+        <div id="contact" class="page-content hidden">
             <section class="contact-hero">
                 <div class="container">
                     <div class="hero-content">
@@ -1805,59 +1458,20 @@
             <section id="contact-detail">
                 <div class="container">
                     <div class="contact-container">
-                        <div class="contact-info fade-in">
+                        <div class="contact-info fade-in blur">
                             <h2>Get in Touch With Us</h2>
                             <p>We're here to help you navigate the digital transformation journey. Whether you have a specific project in mind or just want to explore possibilities, our Nairobi team is ready to collaborate.</p>
                             
                             <div class="contact-details">
-                                <div class="contact-item">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                    <div class="contact-text">
-                                        <h4>Our Office</h4>
-                                        <p>Unipen Apartments, Block B, 3rd Floor</p>
-                                        <p>Office No. 3BS, Argwings Kodhek Road</p>
-                                        <p>Hurlingham, Nairobi, Kenya</p>
-                                        <p><em>Next to Java House, Hurlingham</em></p>
-                                    </div>
-                                </div>
-                                
-                                <div class="contact-item">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-phone-alt"></i>
-                                    </div>
-                                    <div class="contact-text">
-                                        <h4>Phone Numbers</h4>
-                                        <a href="tel:+254758724758">+254 758 724 758</a>
-                                        <a href="tel:+254780018990">+254 780 018 990</a>
-                                        <p>Mon-Fri, 8:00 AM - 6:00 PM EAT</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="contact-item">
-                                    <div class="contact-icon">
-                                        <i class="fas fa-envelope"></i>
-                                    </div>
-                                    <div class="contact-text">
-                                        <h4>Email Address</h4>
-                                        <a href="mailto:kodexcreatives254@gmail.com">kodexcreatives254@gmail.com</a>
-                                        <p>Response within 24 hours guaranteed</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="social-links">
-                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                                <!-- Contact details here -->
                             </div>
                         </div>
                         
-                        <div class="contact-form fade-in">
+                        <div class="contact-form fade-in blur stagger-2">
                             <h3 style="margin-bottom: 30px; color: white; font-size: 2rem;">Start Your Project Today</h3>
                             <form id="projectForm">
+                                <div class="form-message" id="formMessage"></div>
+                                
                                 <div class="form-group">
                                     <label for="name">Full Name</label>
                                     <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
@@ -1871,11 +1485,6 @@
                                 <div class="form-group">
                                     <label for="phone">Phone Number</label>
                                     <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label for="company">Company</label>
-                                    <input type="text" id="company" class="form-control" placeholder="Enter your company name">
                                 </div>
                                 
                                 <div class="form-group">
@@ -1897,7 +1506,13 @@
                                     <textarea id="message" class="form-control" placeholder="Tell us about your project, challenges, and goals. How can we help you succeed?" required></textarea>
                                 </div>
                                 
-                                <button type="submit" class="cta-button" style="width: 100%; justify-content: center;">Send Message <i class="fas fa-paper-plane"></i></button>
+                                <button type="submit" class="cta-button" id="submitBtn" style="width: 100%; justify-content: center;">
+                                    Send Message <i class="fas fa-paper-plane"></i>
+                                </button>
+                                
+                                <p style="text-align: center; margin-top: 20px; color: var(--gray); font-size: 0.9rem;">
+                                    Or contact us directly: <a href="https://wa.me/254758724758" style="color: var(--secondary);">WhatsApp</a> | <a href="tel:+254758724758" style="color: var(--secondary);">Call</a> | <a href="mailto:kodexcreatives254@gmail.com" style="color: var(--secondary);">Email</a>
+                                </p>
                             </form>
                         </div>
                     </div>
@@ -1906,7 +1521,7 @@
         </div>
     </main>
 
-    <!-- Service Modals -->
+    <!-- Service Modal -->
     <div class="service-modal" id="serviceModal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeServiceModal()">&times;</button>
@@ -1914,61 +1529,200 @@
         </div>
     </div>
 
+    <!-- Case Study Modal -->
+    <div class="case-study-modal" id="caseStudyModal">
+        <div class="case-study-content">
+            <button class="modal-close" onclick="closeCaseStudy()">&times;</button>
+            <div id="caseStudyContent"></div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Kodex Creatives</h3>
-                    <p>Kenya's premier AI-driven creative agency. We build intelligent systems, develop custom software, and execute performance marketing strategies that transform businesses in the digital economy.</p>
-                    <p><strong>Founded:</strong> 2025</p>
-                    <p><strong>Location:</strong> Nairobi, Kenya</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Services</h3>
-                    <a href="#services" onclick="navigateTo('services')">AI Engineering & ML</a>
-                    <a href="#services" onclick="navigateTo('services')">Software Development</a>
-                    <a href="#services" onclick="navigateTo('services')">Business Automation</a>
-                    <a href="#services" onclick="navigateTo('services')">Digital Marketing</a>
-                    <a href="#services" onclick="navigateTo('services')">Data Analytics & BI</a>
-                    <a href="#services" onclick="navigateTo('services')">Creative Production</a>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Company</h3>
-                    <a href="#about" onclick="navigateTo('about')">About Us</a>
-                    <a href="#portfolio" onclick="navigateTo('portfolio')">Portfolio</a>
-                    <a href="#contact" onclick="navigateTo('contact')">Careers</a>
-                    <a href="#contact" onclick="navigateTo('contact')">Blog</a>
-                    <a href="#contact" onclick="navigateTo('contact')">Privacy Policy</a>
-                    <a href="#contact" onclick="navigateTo('contact')">Terms of Service</a>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <a href="mailto:kodexcreatives254@gmail.com">kodexcreatives254@gmail.com</a>
-                    <a href="tel:+254758724758">+254 758 724 758</a>
-                    <a href="tel:+254780018990">+254 780 018 990</a>
-                    <p>Unipen Apartments, Block B</p>
-                    <p>3rd Floor, Office No. 3BS</p>
-                    <p>Argwings Kodhek Road, Hurlingham</p>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2025 Kodex Creatives. All rights reserved. | AI-Powered Digital Solutions | Nairobi, Kenya</p>
-            </div>
-        </div>
+        <!-- Footer content -->
     </footer>
 
     <script>
+        // Service Data
+        const serviceData = {
+            'ai-detailed': {
+                title: 'AI Engineering & Machine Learning',
+                description: 'Transform your business with intelligent systems that learn, adapt, and optimize processes autonomously.',
+                deliverables: [
+                    'Custom Machine Learning Models',
+                    'Predictive Analytics Systems',
+                    'Natural Language Processing Solutions',
+                    'Computer Vision Applications',
+                    'AI Chatbots & Virtual Assistants',
+                    'Data Pipeline Automation'
+                ],
+                process: [
+                    'Discovery & Requirement Analysis (1-2 weeks)',
+                    'Data Collection & Preparation (2-3 weeks)',
+                    'Model Development & Training (3-4 weeks)',
+                    'Testing & Validation (1-2 weeks)',
+                    'Deployment & Integration (1-2 weeks)',
+                    'Monitoring & Optimization (Ongoing)'
+                ],
+                tools: ['Python 3.10+', 'TensorFlow 2.x', 'PyTorch', 'OpenAI API', 'LangChain', 'Scikit-learn', 'FastAPI'],
+                duration: '8-12 weeks',
+                investment: 'Starting from $15,000'
+            },
+            'software-detailed': {
+                title: 'Custom Software Development',
+                description: 'Build scalable, secure, and high-performance software solutions tailored to your business needs.',
+                deliverables: [
+                    'Full-Stack Web Applications',
+                    'Mobile Applications (iOS/Android)',
+                    'Enterprise Systems (CRM/ERP)',
+                    'API Development & Integration',
+                    'Cloud Infrastructure Setup',
+                    'Technical Documentation'
+                ],
+                process: [
+                    'Strategy & Planning (1-2 weeks)',
+                    'UI/UX Design (2-3 weeks)',
+                    'Development Sprint (4-8 weeks)',
+                    'Quality Assurance Testing (1-2 weeks)',
+                    'Deployment & Launch (1 week)',
+                    'Maintenance & Support (Ongoing)'
+                ],
+                tools: ['React 18', 'Node.js 18+', 'Next.js 13', 'TypeScript', 'PostgreSQL', 'AWS/GCP', 'Docker'],
+                duration: '10-16 weeks',
+                investment: 'Starting from $20,000'
+            },
+            'marketing-detailed': {
+                title: 'AI-Powered Digital Marketing',
+                description: 'Leverage artificial intelligence to optimize marketing strategies and maximize ROI across all channels.',
+                deliverables: [
+                    'AI-Optimized Marketing Campaigns',
+                    'SEO Strategy & Implementation',
+                    'Social Media Management',
+                    'Content Marketing Strategy',
+                    'Conversion Rate Optimization',
+                    'Analytics & Reporting Dashboard'
+                ],
+                process: [
+                    'Audit & Analysis (1 week)',
+                    'Strategy Development (1-2 weeks)',
+                    'Campaign Setup & Launch (1-2 weeks)',
+                    'Optimization & Scaling (Ongoing)',
+                    'Performance Reporting (Weekly)',
+                    'Strategy Refinement (Monthly)'
+                ],
+                tools: ['Google Ads AI', 'Meta Business Suite', 'SEMrush', 'HubSpot', 'Google Analytics 4', 'Hotjar'],
+                duration: 'Ongoing (3-month minimum)',
+                investment: 'Starting from $5,000/month'
+            },
+            'automation-detailed': {
+                title: 'Intelligent Business Automation',
+                description: 'Transform manual processes into automated workflows that operate 24/7, reducing costs and increasing efficiency.',
+                deliverables: [
+                    'Workflow Automation Systems',
+                    'Robotic Process Automation (RPA)',
+                    'Data Processing Pipelines',
+                    'Customer Service Automation',
+                    'Marketing Automation Setup',
+                    'IoT Integration Solutions'
+                ],
+                process: [
+                    'Process Analysis & Mapping (1-2 weeks)',
+                    'Automation Strategy (1 week)',
+                    'Development & Integration (3-5 weeks)',
+                    'Testing & Validation (1-2 weeks)',
+                    'Deployment & Training (1 week)',
+                    'Monitoring & Optimization (Ongoing)'
+                ],
+                tools: ['Zapier', 'Make.com', 'UiPath', 'Python', 'AWS Lambda', 'Azure Logic Apps'],
+                duration: '6-10 weeks',
+                investment: 'Starting from $12,000'
+            },
+            'analytics-detailed': {
+                title: 'Data Analytics & Business Intelligence',
+                description: 'Transform raw data into actionable insights with advanced analytics, visualization, and predictive modeling.',
+                deliverables: [
+                    'Business Intelligence Dashboards',
+                    'Data Warehousing Solutions',
+                    'Predictive Analytics Models',
+                    'Customer Analytics Reports',
+                    'Real-time Analytics Systems',
+                    'Data Governance Framework'
+                ],
+                process: [
+                    'Data Assessment (1-2 weeks)',
+                    'Infrastructure Setup (2-3 weeks)',
+                    'Data Pipeline Development (3-4 weeks)',
+                    'Dashboard & Visualization (2-3 weeks)',
+                    'Training & Deployment (1 week)',
+                    'Support & Evolution (Ongoing)'
+                ],
+                tools: ['Tableau', 'Power BI', 'Snowflake', 'Apache Spark', 'Python Pandas', 'SQL'],
+                duration: '8-12 weeks',
+                investment: 'Starting from $18,000'
+            },
+            'creative-detailed': {
+                title: 'Creative & Visual Production',
+                description: 'Compelling visual storytelling that captures attention and drives engagement across all platforms.',
+                deliverables: [
+                    'Video Production & Editing',
+                    'Photography & Videography',
+                    'Brand Identity Design',
+                    'UI/UX Design Systems',
+                    'Motion Graphics & Animation',
+                    'Content Strategy & Planning'
+                ],
+                process: [
+                    'Creative Brief & Research (1 week)',
+                    'Concept Development (1-2 weeks)',
+                    'Production & Creation (2-4 weeks)',
+                    'Review & Revisions (1-2 weeks)',
+                    'Final Delivery & Assets (1 week)',
+                    'Performance Analysis (Post-launch)'
+                ],
+                tools: ['Adobe Creative Suite', 'Figma', 'DaVinci Resolve', 'Blender', 'After Effects', 'Premiere Pro'],
+                duration: '4-8 weeks',
+                investment: 'Starting from $8,000'
+            }
+        };
+
+        // Case Study Data
+        const caseStudyData = {
+            'ai1': {
+                title: 'Predictive Maintenance System for Manufacturing',
+                client: 'Leading Kenyan Manufacturing Company',
+                industry: 'Industrial Manufacturing',
+                challenge: 'The client faced frequent equipment breakdowns causing 15-20% production downtime annually, resulting in $3M+ in lost revenue and emergency repair costs.',
+                solution: 'We developed an AI-powered predictive maintenance system using IoT sensors and machine learning algorithms to predict equipment failures 7-14 days in advance.',
+                results: [
+                    {metric: '43%', label: 'Reduction in Downtime'},
+                    {metric: '$2.3M', label: 'Annual Savings'},
+                    {metric: '94%', label: 'Prediction Accuracy'},
+                    {metric: '7-14', label: 'Days Advance Warning'}
+                ],
+                technologies: ['Python', 'TensorFlow', 'IoT Sensors', 'Azure IoT Hub', 'Power BI'],
+                timeline: '12 weeks',
+                testimonial: 'The predictive maintenance system from Kodex Creatives transformed our operations. We went from reactive to proactive maintenance, saving millions annually.',
+                testimonialAuthor: 'Operations Director, Manufacturing Client'
+            },
+            'software1': {
+                title: 'E-commerce Platform with AI Recommendations',
+                client: 'Nairobi-based Retail Chain',
+                industry: 'Retail & E-commerce',
+                challenge: 'The client needed a modern e-commerce platform to compete with international retailers, with poor user experience and low conversion rates (1.2%) on their existing site.',
+                solution: 'We built a custom e-commerce platform with AI-powered product recommendations, personalized shopping experiences, and seamless mobile optimization.',
+                results: [
+                    {metric: '35%', label: 'Increase in Conversion Rate'},
+                    {metric: '28%', label: 'Higher Average Order Value'},
+                    {metric: '40%', label: 'Mobile Traffic Growth'},
+                    {metric: '2.5x', label: 'Returning Customers'}
+                ],
+                technologies: ['React', 'Node.js', 'MongoDB', 'Redis', 'AWS', 'AI Recommendation Engine'],
+                timeline: '16 weeks',
+                testimonial: 'Our new e-commerce platform exceeded all expectations. The AI recommendations alone increased our revenue by 40% in the first quarter.',
+                testimonialAuthor: 'CEO, Retail Client'
+            }
+        };
+
         // Initialize the website
         document.addEventListener('DOMContentLoaded', function() {
             // Hide loading screen
@@ -1981,16 +1735,11 @@
             
             initNavigation();
             initScrollEffects();
-            initAnimations();
+            initScrollReveal();
+            initContactForm();
             createAICircuit();
             handleHashChange();
-            
-            // Form submission
-            document.getElementById('projectForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Thank you for your message! Our team will contact you within 24 hours.');
-                this.reset();
-            });
+            initStatsCounter();
             
             // Listen for hash changes
             window.addEventListener('hashchange', handleHashChange);
@@ -2001,51 +1750,132 @@
                     closeServiceModal();
                 }
             });
+            
+            // Case study modal close on outside click
+            document.getElementById('caseStudyModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeCaseStudy();
+                }
+            });
+            
+            // Portfolio filtering with data attributes
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    filterPortfolio(category);
+                });
+            });
         });
         
-        // Navigation function
-        function navigateTo(page) {
-            // Update URL hash
-            window.location.hash = page;
+        // Initialize scroll reveal system
+        function initScrollReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('visible');
+                        }, entry.target.classList.contains('stagger-1') ? 100 : 
+                           entry.target.classList.contains('stagger-2') ? 200 :
+                           entry.target.classList.contains('stagger-3') ? 300 :
+                           entry.target.classList.contains('stagger-4') ? 400 :
+                           entry.target.classList.contains('stagger-5') ? 500 :
+                           entry.target.classList.contains('stagger-6') ? 600 : 0);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
             
-            // Update page content
-            showPage(page);
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        }
+        
+        // Navigation with proper hash handling
+        let currentPage = 'home';
+        let isNavigating = false;
+        
+        function navigateTo(page, event = null) {
+            if (event) event.preventDefault();
             
-            // Update active nav link
-            updateActiveNavLink(page);
+            if (isNavigating || page === currentPage) return;
             
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            isNavigating = true;
+            const currentHash = window.location.hash.substring(1);
             
-            // Close mobile menu if open
+            // Only update hash if different
+            if (currentHash !== page) {
+                window.location.hash = page;
+            } else {
+                // Hash is already correct, just update page
+                updatePage(page);
+            }
+            
+            // Close mobile menu
             closeMobileMenu();
         }
         
-        // Show specific page
-        function showPage(page) {
-            // Hide all pages
-            document.querySelectorAll('.page-content').forEach(p => {
-                p.style.display = 'none';
-            });
-            
-            // Show requested page
-            document.getElementById(page).style.display = 'block';
-            
-            // Trigger animations for new content
-            setTimeout(initAnimations, 100);
-        }
-        
-        // Handle hash change
         function handleHashChange() {
             const hash = window.location.hash.substring(1) || 'home';
-            navigateTo(hash);
+            
+            if (hash === currentPage) {
+                isNavigating = false;
+                return;
+            }
+            
+            updatePage(hash);
+        }
+        
+        function updatePage(page) {
+            // Show page transition
+            const transition = document.getElementById('pageTransition');
+            transition.classList.add('active');
+            
+            setTimeout(() => {
+                // Hide current page
+                const currentPageEl = document.getElementById(currentPage);
+                if (currentPageEl) {
+                    currentPageEl.classList.add('hidden');
+                }
+                
+                // Show new page
+                const newPageEl = document.getElementById(page);
+                if (newPageEl) {
+                    newPageEl.classList.remove('hidden');
+                }
+                
+                // Update active nav link
+                updateActiveNavLink(page);
+                
+                // Reset scroll to top
+                window.scrollTo({ top: 0, behavior: 'instant' });
+                
+                // Hide transition
+                setTimeout(() => {
+                    transition.classList.remove('active');
+                    isNavigating = false;
+                }, 400);
+                
+                currentPage = page;
+                
+                // Reinitialize scroll reveal for new page
+                setTimeout(initScrollReveal, 100);
+                
+                // Animate stats if on home page
+                if (page === 'home') {
+                    initStatsCounter();
+                }
+            }, 400);
         }
         
         // Update active navigation link
         function updateActiveNavLink(page) {
             document.querySelectorAll('nav a').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${page}`) {
+                const href = link.getAttribute('href');
+                if (href === `#${page}` || (href === '#home' && page === '')) {
                     link.classList.add('active');
                 }
             });
@@ -2084,44 +1914,72 @@
         
         // Initialize scroll effects
         function initScrollEffects() {
-            // Header scroll effect
             const header = document.getElementById('mainHeader');
+            const scrollProgress = document.getElementById('scrollProgress');
+            const backToTop = document.getElementById('backToTop');
             
             window.addEventListener('scroll', function() {
+                // Header scroll effect
                 if (window.scrollY > 50) {
                     header.classList.add('header-scrolled');
                 } else {
                     header.classList.remove('header-scrolled');
                 }
                 
-                // Trigger animations on scroll
-                checkAnimations();
-            });
-        }
-        
-        // Initialize animations
-        function initAnimations() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            fadeElements.forEach(el => {
-                el.classList.add('visible');
-            });
-        }
-        
-        // Check animations on scroll
-        function checkAnimations() {
-            const fadeElements = document.querySelectorAll('.fade-in:not(.visible)');
-            const windowHeight = window.innerHeight;
-            const windowTop = window.scrollY;
-            const windowBottom = windowTop + windowHeight;
-            
-            fadeElements.forEach(el => {
-                const elementTop = el.offsetTop;
-                const elementBottom = elementTop + el.offsetHeight;
+                // Scroll progress
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                scrollProgress.style.width = scrolled + '%';
                 
-                // Check if element is in viewport
-                if (elementBottom >= windowTop && elementTop <= windowBottom) {
-                    el.classList.add('visible');
+                // Back to top button
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+                
+                // Animate stats when in view
+                if (window.scrollY < 500) {
+                    animateStats();
+                }
+            });
+            
+            // Back to top click
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Animate hero stats
+        function initStatsCounter() {
+            animateStats();
+        }
+        
+        function animateStats() {
+            const stats = document.querySelectorAll('.stat-number[data-count]');
+            
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-count'));
+                const current = parseInt(stat.textContent.replace(/[^0-9]/g, '') || '0');
+                
+                if (current < target) {
+                    const increment = target / 50; // 50 frames
+                    let currentValue = current;
+                    
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= target) {
+                            stat.textContent = target + (stat.textContent.includes('%') ? '%' : '+');
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(currentValue) + (stat.textContent.includes('%') ? '%' : '+');
+                        }
+                    }, 30);
                 }
             });
         }
@@ -2134,15 +1992,16 @@
             // Update active filter button
             filterButtons.forEach(btn => {
                 btn.classList.remove('active');
-                if (btn.textContent.toLowerCase().includes(category) || (category === 'all' && btn.textContent === 'All Projects')) {
+                if (btn.getAttribute('data-category') === category) {
                     btn.classList.add('active');
                 }
             });
             
             // Show/hide items based on category
             items.forEach(item => {
-                if (category === 'all' || item.getAttribute('data-category').includes(category)) {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
                     item.style.display = 'block';
+                    // Re-add animation
                     setTimeout(() => {
                         item.classList.add('visible');
                     }, 100);
@@ -2154,61 +2013,58 @@
         }
         
         // Service modal functions
-        function openServiceModal(service) {
+        function openServiceModal(serviceKey) {
             const modal = document.getElementById('serviceModal');
             const content = document.getElementById('modalContent');
             
-            let serviceContent = '';
+            const service = serviceData[serviceKey];
+            if (!service) return;
             
-            switch(service) {
-                case 'ai-detailed':
-                    serviceContent = `
-                        <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">AI Engineering & Machine Learning</h2>
-                        <p style="color: var(--gray); margin-bottom: 30px; font-size: 1.2rem;">Transform your business with intelligent systems that learn, adapt, and optimize.</p>
-                        
-                        <div style="background: rgba(0, 212, 255, 0.05); padding: 30px; border-radius: 16px; margin-bottom: 30px;">
-                            <h3 style="color: white; margin-bottom: 20px;">What We Offer</h3>
-                            <ul style="color: var(--gray); list-style: none;">
-                                <li style="margin-bottom: 15px; padding-left: 25px; position: relative;"><i class="fas fa-check" style="color: var(--secondary); position: absolute; left: 0;"></i> <strong>Custom Machine Learning Models:</strong> Tailored algorithms for your specific business challenges</li>
-                                <li style="margin-bottom: 15px; padding-left: 25px; position: relative;"><i class="fas fa-check" style="color: var(--secondary); position: absolute; left: 0;"></i> <strong>Predictive Analytics:</strong> Forecast trends, customer behavior, and market shifts</li>
-                                <li style="margin-bottom: 15px; padding-left: 25px; position: relative;"><i class="fas fa-check" style="color: var(--secondary); position: absolute; left: 0;"></i> <strong>Natural Language Processing:</strong> Chatbots, sentiment analysis, content generation</li>
-                                <li style="margin-bottom: 15px; padding-left: 25px; position: relative;"><i class="fas fa-check" style="color: var(--secondary); position: absolute; left: 0;"></i> <strong>Computer Vision:</strong> Image recognition, object detection, visual analytics</li>
-                                <li style="margin-bottom: 15px; padding-left: 25px; position: relative;"><i class="fas fa-check" style="color: var(--secondary); position: absolute; left: 0;"></i> <strong>AI Integration:</strong> Seamlessly embed AI into existing workflows</li>
-                            </ul>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 40px 0;">
-                            <div>
-                                <h4 style="color: white; margin-bottom: 15px;">Our Process</h4>
-                                <ol style="color: var(--gray); padding-left: 20px;">
-                                    <li style="margin-bottom: 10px;">Discovery & Requirement Analysis</li>
-                                    <li style="margin-bottom: 10px;">Data Collection & Preparation</li>
-                                    <li style="margin-bottom: 10px;">Model Development & Training</li>
-                                    <li style="margin-bottom: 10px;">Testing & Validation</li>
-                                    <li style="margin-bottom: 10px;">Deployment & Integration</li>
-                                    <li>Monitoring & Optimization</li>
-                                </ol>
-                            </div>
-                            <div>
-                                <h4 style="color: white; margin-bottom: 15px;">Technologies</h4>
-                                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                                    <span class="tech-tag">Python 3.10+</span>
-                                    <span class="tech-tag">TensorFlow 2.x</span>
-                                    <span class="tech-tag">PyTorch</span>
-                                    <span class="tech-tag">OpenAI API</span>
-                                    <span class="tech-tag">LangChain</span>
-                                    <span class="tech-tag">Scikit-learn</span>
-                                </div>
+            const serviceContent = `
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">${service.title}</h2>
+                <p style="color: var(--gray); margin-bottom: 30px; font-size: 1.2rem;">${service.description}</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+                    <div>
+                        <h3 style="color: white; margin-bottom: 20px; font-size: 1.5rem;">Deliverables</h3>
+                        <ul style="color: var(--gray); list-style: none;">
+                            ${service.deliverables.map(item => `
+                                <li style="margin-bottom: 15px; padding-left: 25px; position: relative;">
+                                    <i class="fas fa-check" style="color: var(--secondary); position: absolute; left: 0;"></i> ${item}
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 style="color: white; margin-bottom: 20px; font-size: 1.5rem;">Our Process</h3>
+                        <ol style="color: var(--gray); padding-left: 20px;">
+                            ${service.process.map(item => `
+                                <li style="margin-bottom: 10px;">${item}</li>
+                            `).join('')}
+                        </ol>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(0, 212, 255, 0.05); padding: 25px; border-radius: 16px; margin-bottom: 30px;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <h4 style="color: white; margin-bottom: 10px;">Technologies</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                                ${service.tools.map(tool => `
+                                    <span class="tech-tag">${tool}</span>
+                                `).join('')}
                             </div>
                         </div>
-                        
-                        <a href="#contact" onclick="navigateTo('contact'); closeServiceModal();" class="cta-button">Start Your AI Project</a>
-                    `;
-                    break;
-                    
-                default:
-                    serviceContent = `<h2>Service Details</h2><p>Detailed information about this service.</p>`;
-            }
+                        <div>
+                            <h4 style="color: white; margin-bottom: 10px;">Project Details</h4>
+                            <p style="color: var(--gray); margin-bottom: 8px;"><strong>Duration:</strong> ${service.duration}</p>
+                            <p style="color: var(--gray);"><strong>Investment:</strong> ${service.investment}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="#contact" onclick="navigateTo('contact'); closeServiceModal();" class="cta-button">Start This Project</a>
+            `;
             
             content.innerHTML = serviceContent;
             modal.classList.add('active');
@@ -2219,6 +2075,153 @@
             const modal = document.getElementById('serviceModal');
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+        }
+        
+        // Case Study functions
+        function openCaseStudy(caseKey) {
+            const modal = document.getElementById('caseStudyModal');
+            const content = document.getElementById('caseStudyContent');
+            
+            const caseStudy = caseStudyData[caseKey];
+            if (!caseStudy) return;
+            
+            const caseContent = `
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--secondary);">${caseStudy.title}</h2>
+                
+                <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 40px; margin-bottom: 40px;">
+                    <div>
+                        <h3 style="color: white; margin-bottom: 15px; font-size: 1.3rem;">The Challenge</h3>
+                        <p style="color: var(--gray); margin-bottom: 25px;">${caseStudy.challenge}</p>
+                        
+                        <h3 style="color: white; margin-bottom: 15px; font-size: 1.3rem;">Our Solution</h3>
+                        <p style="color: var(--gray);">${caseStudy.solution}</p>
+                    </div>
+                    <div>
+                        <div style="background: rgba(0, 212, 255, 0.05); padding: 25px; border-radius: 16px;">
+                            <h4 style="color: white; margin-bottom: 15px;">Project Details</h4>
+                            <p style="color: var(--gray); margin-bottom: 8px;"><strong>Client:</strong> ${caseStudy.client}</p>
+                            <p style="color: var(--gray); margin-bottom: 8px;"><strong>Industry:</strong> ${caseStudy.industry}</p>
+                            <p style="color: var(--gray); margin-bottom: 8px;"><strong>Timeline:</strong> ${caseStudy.timeline}</p>
+                            <p style="color: var(--gray);"><strong>Technologies:</strong></p>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                                ${caseStudy.technologies.map(tech => `
+                                    <span class="tech-tag" style="font-size: 0.8rem;">${tech}</span>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(0, 212, 255, 0.05); padding: 30px; border-radius: 16px; margin-bottom: 40px;">
+                    <h3 style="color: white; margin-bottom: 25px; font-size: 1.5rem; text-align: center;">Results Delivered</h3>
+                    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;">
+                        ${caseStudy.results.map(result => `
+                            <div style="text-align: center;">
+                                <div style="font-size: 2.5rem; font-weight: 800; color: var(--secondary); margin-bottom: 5px;">${result.metric}</div>
+                                <div style="color: var(--gray); font-size: 0.9rem;">${result.label}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+                
+                <div style="border-left: 4px solid var(--secondary); padding-left: 20px; margin-bottom: 40px;">
+                    <p style="color: var(--gray); font-style: italic; font-size: 1.1rem;">"${caseStudy.testimonial}"</p>
+                    <p style="color: white; margin-top: 10px; font-weight: 600;">${caseStudy.testimonialAuthor}</p>
+                </div>
+                
+                <a href="#contact" onclick="navigateTo('contact'); closeCaseStudy();" class="cta-button" style="width: 100%; text-align: center; justify-content: center;">Start Your Project</a>
+            `;
+            
+            content.innerHTML = caseContent;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeCaseStudy() {
+            const modal = document.getElementById('caseStudyModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Initialize contact form
+        function initContactForm() {
+            const form = document.getElementById('projectForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const formMessage = document.getElementById('formMessage');
+            
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<span class="loading"><span class="loading-spinner"></span> Sending...</span>';
+                submitBtn.disabled = true;
+                
+                // Get form data
+                const formData = {
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value,
+                    company: document.getElementById('company')?.value || '',
+                    service: document.getElementById('service').value,
+                    message: document.getElementById('message').value,
+                    date: new Date().toISOString()
+                };
+                
+                try {
+                    // Method 1: Formspree (Free form backend)
+                    const response = await fetch('https://formspree.io/f/xbjnnlyp', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formData)
+                    });
+                    
+                    if (response.ok) {
+                        // Success
+                        showToast('Message sent successfully! We\'ll contact you within 24 hours.', 'success');
+                        formMessage.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully! We\'ll contact you within 24 hours.';
+                        formMessage.className = 'form-message success';
+                        form.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (error) {
+                    // Fallback to WhatsApp
+                    const whatsappMessage = `New Project Inquiry from Kodex Creatives Website:%0A%0AName: ${formData.name}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AService: ${formData.service}%0AMessage: ${formData.message}`;
+                    const whatsappUrl = `https://wa.me/254758724758?text=${whatsappMessage}`;
+                    
+                    showToast('Form submission failed. Redirecting to WhatsApp...', 'error');
+                    
+                    setTimeout(() => {
+                        window.open(whatsappUrl, '_blank');
+                    }, 2000);
+                } finally {
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                }
+            });
+        }
+        
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toastMessage.innerHTML = message;
+            toast.className = `toast ${type}`;
+            toast.classList.add('visible');
+            
+            setTimeout(() => {
+                toast.classList.remove('visible');
+            }, 5000);
         }
         
         // Create AI Circuit Background
@@ -2265,19 +2268,18 @@
             }
         }
         
-        // Initial animation check
-        setTimeout(initAnimations, 300);
-        
         // Parallax effect for floating objects
-        window.addEventListener('mousemove', function(e) {
-            const x = (e.clientX / window.innerWidth - 0.5) * 20;
-            const y = (e.clientY / window.innerHeight - 0.5) * 20;
-            
-            document.querySelectorAll('.floating-object').forEach((obj, index) => {
-                const speed = 0.5 + (index * 0.1);
-                obj.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            window.addEventListener('mousemove', function(e) {
+                const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                
+                document.querySelectorAll('.floating-object').forEach((obj, index) => {
+                    const speed = 0.5 + (index * 0.1);
+                    obj.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+                });
             });
-        });
+        }
     </script>
 </body>
 </html>

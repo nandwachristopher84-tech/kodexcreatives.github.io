@@ -6,6 +6,24 @@
     <title>Kodex Creatives | AI-Powered Creative & Technology Agency</title>
     <meta name="description" content="Kenya's premier AI-driven creative agency. We build intelligent systems, custom software, and performance marketing solutions that transform businesses.">
     <meta name="keywords" content="AI agency Kenya, digital marketing Nairobi, software development, machine learning, automation, web development Kenya">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kodexcreatives.com/">
+    <meta property="og:title" content="Kodex Creatives | AI-Powered Creative & Technology Agency">
+    <meta property="og:description" content="Kenya's premier AI-driven creative agency. We build intelligent systems, custom software, and performance marketing solutions that transform businesses.">
+    <meta property="og:image" content="https://kodexcreatives.com/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kodexcreatives.com/">
+    <meta property="twitter:title" content="Kodex Creatives | AI-Powered Creative & Technology Agency">
+    <meta property="twitter:description" content="Kenya's premier AI-driven creative agency. We build intelligent systems, custom software, and performance marketing solutions that transform businesses.">
+    <meta property="twitter:image" content="https://kodexcreatives.com/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -22,6 +40,7 @@
             --warning: #f59e0b;
             --neon-blue: #00f3ff;
             --neon-purple: #b967ff;
+            --error: #f43f5e;
         }
 
         * {
@@ -56,11 +75,42 @@
             padding: 0 20px;
         }
 
-        /* Floating Objects */
-        .floating-object {
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loader {
+            width: 80px;
+            height: 80px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--secondary);
+            animation: spin 1s infinite linear;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Floating Objects with Parallax Wrappers */
+        .floating-object-wrapper {
             position: fixed;
             z-index: -1;
             pointer-events: none;
+        }
+
+        .floating-object {
             opacity: 0.4;
         }
 
@@ -76,6 +126,34 @@
             50% { transform: translate(0, 200px) rotate(180deg); }
             75% { transform: translate(-100px, 100px) rotate(270deg); }
             100% { transform: translate(0, 0) rotate(360deg); }
+        }
+
+        /* AI Circuit */
+        .ai-circuit {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            opacity: 0.05;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+            height: 1px;
+        }
+
+        .circuit-node {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--secondary);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--secondary);
+            animation: pulse 2s infinite alternate;
         }
 
         /* Scroll Progress */
@@ -133,6 +211,18 @@
             z-index: 998;
         }
 
+        @media (max-width: 768px) {
+            .sticky-cta-dock {
+                bottom: 80px;
+                right: 15px;
+            }
+            
+            .back-to-top {
+                bottom: 140px;
+                right: 15px;
+            }
+        }
+
         .cta-dock-btn {
             width: 60px;
             height: 60px;
@@ -178,6 +268,238 @@
             transform: translateX(0);
         }
 
+        /* Chatbot */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 997;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            left: 0;
+            width: 350px;
+            max-width: 90vw;
+            height: 500px;
+            max-height: 70vh;
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(20px) scale(0.9);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .chatbot-window.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .chatbot-header {
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatbot-header h3 {
+            color: white;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatbot-status {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .chatbot-close:hover {
+            color: white;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+            animation: messageAppear 0.3s ease;
+        }
+
+        @keyframes messageAppear {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-bot {
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+        }
+
+        .message-user {
+            background: rgba(124, 58, 237, 0.15);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 18px;
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--secondary);
+            border-radius: 50%;
+            animation: typingBounce 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingBounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        .quick-replies {
+            padding: 15px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .quick-reply {
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            color: var(--gray);
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-reply:hover {
+            background: rgba(0, 212, 255, 0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .chatbot-input {
+            padding: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input input:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.1);
+        }
+
+        .chatbot-input button {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-input button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+        }
+
         /* Toast Notification */
         .toast {
             position: fixed;
@@ -201,7 +523,7 @@
         }
 
         .toast.error {
-            border-left-color: #f43f5e;
+            border-left-color: var(--error);
         }
 
         /* Loading States */
@@ -218,10 +540,6 @@
             border-top-color: white;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
 
         /* Page Transition */
@@ -657,6 +975,39 @@
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
         }
 
+        .service-icon {
+            font-size: 4rem;
+            color: var(--secondary);
+            margin-bottom: 30px;
+            display: inline-block;
+            padding: 20px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 16px;
+        }
+
+        .service-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.15);
+            color: var(--secondary);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .tech-tag {
+            background: rgba(0, 212, 255, 0.25);
+            transform: translateY(-3px);
+        }
+
         /* Enhanced Portfolio */
         .portfolio-hero {
             padding: 180px 0 120px;
@@ -797,9 +1148,102 @@
 
         .form-message.error {
             background: rgba(244, 63, 94, 0.1);
-            border: 1px solid #f43f5e;
-            color: #f43f5e;
+            border: 1px solid var(--error);
+            color: var(--error);
             display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        /* Contact Details */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-details {
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(0, 212, 255, 0.2);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .contact-text h4 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            color: white;
+        }
+
+        .contact-text p, .contact-text a {
+            color: var(--gray);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-text a:hover {
+            color: var(--secondary);
         }
 
         /* Service Modal */
@@ -894,6 +1338,157 @@
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
         }
 
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, #070a12 0%, #05080f 100%);
+            padding: 120px 0 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 100px;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 70px;
+            margin-bottom: 100px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+
+        .footer-column p, .footer-column a {
+            color: var(--gray);
+            margin-bottom: 18px;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .footer-column a:hover {
+            color: var(--secondary);
+            transform: translateX(8px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 35px;
+        }
+
+        .social-link {
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            font-size: 1.3rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            color: var(--primary);
+            transform: translateY(-8px) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .team-member {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.9));
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.1);
+        }
+
+        .member-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin: 0 auto 25px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .member-info h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .member-role {
+            color: var(--secondary);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .member-expertise {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .expertise-tag {
+            background: rgba(124, 58, 237, 0.15);
+            color: var(--accent-light);
+            padding: 6px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
         /* Responsive Design */
         @media (max-width: 1200px) {
             .hero h1 {
@@ -902,6 +1497,11 @@
             
             .portfolio-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 60px;
             }
         }
 
@@ -942,9 +1542,9 @@
                 grid-template-columns: 1fr;
             }
             
-            .sticky-cta-dock {
-                bottom: 80px;
-                right: 20px;
+            .chatbot-container {
+                left: 20px;
+                bottom: 20px;
             }
         }
 
@@ -977,15 +1577,17 @@
                 display: none;
             }
             
-            .sticky-cta-dock {
-                bottom: 70px;
-                right: 15px;
-            }
-            
             .cta-dock-btn {
                 width: 50px;
                 height: 50px;
                 font-size: 1.3rem;
+            }
+            
+            .chatbot-window {
+                width: 320px;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
             }
         }
 
@@ -1011,9 +1613,9 @@
                 padding: 40px 25px;
             }
             
-            .sticky-cta-dock {
-                bottom: 60px;
-                right: 10px;
+            .chatbot-window {
+                width: 95vw;
+                left: 2.5vw;
             }
         }
 
@@ -1029,7 +1631,10 @@
             
             .floating-object,
             .hero h1:after,
-            .loading-spinner {
+            .loading-spinner,
+            .circuit-node,
+            .typing-dot,
+            .chatbot-status {
                 animation: none !important;
             }
             
@@ -1044,6 +1649,16 @@
                 opacity: 1;
                 transform: none;
                 filter: none;
+            }
+            
+            .cta-button:hover,
+            .service-card:hover,
+            .portfolio-item:hover,
+            .back-to-top:hover,
+            .cta-dock-btn:hover,
+            .social-link:hover,
+            .team-member:hover {
+                transform: none !important;
             }
         }
     </style>
@@ -1061,41 +1676,78 @@
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Back to Top Button -->
-    <a href="#" class="back-to-top" id="backToTop">
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
         <i class="fas fa-chevron-up"></i>
     </a>
 
     <!-- Sticky CTA Dock -->
     <div class="sticky-cta-dock">
-        <a href="https://wa.me/254758724758" target="_blank" class="cta-dock-btn whatsapp">
+        <a href="https://wa.me/254758724758" target="_blank" class="cta-dock-btn whatsapp" aria-label="Chat on WhatsApp">
             <i class="fab fa-whatsapp"></i>
             <span class="cta-dock-tooltip">Chat on WhatsApp</span>
         </a>
-        <a href="tel:+254758724758" class="cta-dock-btn phone">
+        <a href="tel:+254758724758" class="cta-dock-btn phone" aria-label="Call us">
             <i class="fas fa-phone-alt"></i>
             <span class="cta-dock-tooltip">Call Us Now</span>
         </a>
-        <a href="mailto:kodexcreatives254@gmail.com" class="cta-dock-btn email">
+        <a href="mailto:kodexcreatives254@gmail.com" class="cta-dock-btn email" aria-label="Send email">
             <i class="fas fa-envelope"></i>
             <span class="cta-dock-tooltip">Send Email</span>
         </a>
-        <a href="#contact" onclick="navigateTo('contact')" class="cta-dock-btn calendar">
+        <a href="#contact" class="cta-dock-btn calendar" aria-label="Book consultation" onclick="navigateTo('contact', event)">
             <i class="fas fa-calendar-alt"></i>
             <span class="cta-dock-tooltip">Book Consultation</span>
         </a>
     </div>
 
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chat">
+            <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="chatbot-window" id="chatbotWindow" aria-label="Chat window" role="dialog" aria-modal="true" hidden>
+            <div class="chatbot-header">
+                <h3><span class="chatbot-status"></span> Kodex Assistant</h3>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Close chat">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <!-- Messages will be inserted here -->
+            </div>
+            <div class="quick-replies" id="quickReplies">
+                <!-- Quick replies will be inserted here -->
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message..." aria-label="Type your message">
+                <button id="chatbotSend" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notification -->
-    <div class="toast" id="toast">
+    <div class="toast" id="toast" role="alert" aria-live="assertive" aria-atomic="true">
         <div id="toastMessage"></div>
     </div>
 
-    <!-- Floating Objects -->
-    <div class="floating-object float-1"></div>
-    <div class="floating-object float-2"></div>
-    <div class="floating-object float-3"></div>
-    <div class="floating-object float-4"></div>
-    <div class="floating-object float-5"></div>
+    <!-- Floating Objects with Wrappers -->
+    <div class="floating-object-wrapper" id="floatWrapper1">
+        <div class="floating-object float-1"></div>
+    </div>
+    <div class="floating-object-wrapper" id="floatWrapper2">
+        <div class="floating-object float-2"></div>
+    </div>
+    <div class="floating-object-wrapper" id="floatWrapper3">
+        <div class="floating-object float-3"></div>
+    </div>
+    <div class="floating-object-wrapper" id="floatWrapper4">
+        <div class="floating-object float-4"></div>
+    </div>
+    <div class="floating-object-wrapper" id="floatWrapper5">
+        <div class="floating-object float-5"></div>
+    </div>
 
     <!-- AI Circuit Background -->
     <div class="ai-circuit" id="aiCircuit"></div>
@@ -1108,7 +1760,7 @@
                 Kodex<span>Creatives</span>
             </a>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
             
@@ -1165,7 +1817,7 @@
                     </div>
                     
                     <div class="services-grid">
-                        <div class="service-card fade-in blur stagger-1" onclick="openServiceModal('ai')">
+                        <div class="service-card fade-in blur stagger-1" onclick="openServiceModal('ai-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-brain"></i>
                             </div>
@@ -1179,7 +1831,7 @@
                             </div>
                         </div>
                         
-                        <div class="service-card fade-in blur stagger-2" onclick="openServiceModal('software')">
+                        <div class="service-card fade-in blur stagger-2" onclick="openServiceModal('software-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-laptop-code"></i>
                             </div>
@@ -1193,7 +1845,7 @@
                             </div>
                         </div>
                         
-                        <div class="service-card fade-in blur stagger-3" onclick="openServiceModal('marketing')">
+                        <div class="service-card fade-in blur stagger-3" onclick="openServiceModal('marketing-detailed')">
                             <div class="service-icon">
                                 <i class="fas fa-bullseye"></i>
                             </div>
@@ -1341,11 +1993,63 @@
                     <div class="about-content">
                         <div class="about-text fade-in blur">
                             <h2>Our Story</h2>
-                            <p>Kodex Creatives was founded in 2025 by Lincoln Kimeu and Chris Amariati with a vision to bridge the gap between cutting-edge technology and creative excellence in the African market.</p>
+                            <p>Kodex Creatives was founded in 2025 by Lincoln Kimeu and Chris Amariati with a vision to bridge the gap between cutting-edge technology and creative excellence in the African market. Starting from a shared workspace in Nairobi, we've grown into a premier digital agency serving clients across Kenya and East Africa.</p>
+                            <p>Our mission is to democratize AI technology and make intelligent digital solutions accessible to businesses of all sizes. We believe that every company, regardless of scale, should have access to the tools and expertise needed to thrive in the digital economy.</p>
                         </div>
                         
                         <div class="about-visual">
-                            <!-- Team content here -->
+                            <div class="mission-vision">
+                                <div class="service-card" style="margin-bottom: 30px;">
+                                    <h3><i class="fas fa-bullseye"></i> Our Mission</h3>
+                                    <p>To empower African businesses with AI-driven solutions that drive growth, innovation, and competitive advantage in the global digital landscape.</p>
+                                </div>
+                                
+                                <div class="service-card">
+                                    <h3><i class="fas fa-eye"></i> Our Vision</h3>
+                                    <p>To become Africa's leading AI-powered creative agency, recognized for transforming businesses through intelligent systems and strategic innovation.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-title" style="margin-top: 100px;">
+                        <h2>Our Leadership Team</h2>
+                        <p>The brilliant minds driving innovation at Kodex Creatives</p>
+                    </div>
+
+                    <div class="team-grid">
+                        <div class="team-member fade-in blur stagger-1">
+                            <div class="member-avatar">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                            <div class="member-info">
+                                <h3>Lincoln Kimeu</h3>
+                                <div class="member-role">Co-Founder & Creative Director</div>
+                                <p>Heads all creative and visual production at Kodex Creatives, with 8+ years experience in multimedia production and brand storytelling.</p>
+                                <div class="member-expertise">
+                                    <span class="expertise-tag">Video Editing</span>
+                                    <span class="expertise-tag">Photography</span>
+                                    <span class="expertise-tag">Creative Direction</span>
+                                    <span class="expertise-tag">Brand Strategy</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="team-member fade-in blur stagger-2">
+                            <div class="member-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="member-info">
+                                <h3>Chris Amariati</h3>
+                                <div class="member-role">Co-Founder & CTO</div>
+                                <p>Leads all technical and AI-driven operations with 10+ years in software engineering and machine learning systems.</p>
+                                <div class="member-expertise">
+                                    <span class="expertise-tag">AI Engineering</span>
+                                    <span class="expertise-tag">Software Development</span>
+                                    <span class="expertise-tag">System Architecture</span>
+                                    <span class="expertise-tag">Technical Strategy</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1439,6 +2143,39 @@
                                 </button>
                             </div>
                         </div>
+                        
+                        <!-- Marketing Project -->
+                        <div class="portfolio-item fade-in blur stagger-3" data-category="marketing" onclick="openCaseStudy('marketing1')">
+                            <div class="portfolio-img">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="portfolio-info">
+                                <h3>AI-Driven Marketing Campaign</h3>
+                                <p>Comprehensive digital marketing strategy using AI for audience segmentation and ad optimization, generating 2,500+ qualified leads with 65% lower acquisition cost.</p>
+                                
+                                <div class="portfolio-stats">
+                                    <div class="stat">
+                                        <div class="stat-value">2,500+</div>
+                                        <div class="stat-label">Qualified Leads</div>
+                                    </div>
+                                    <div class="stat">
+                                        <div class="stat-value">65%</div>
+                                        <div class="stat-label">Lower CAC</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="service-tech">
+                                    <span class="tech-tag">Google Ads</span>
+                                    <span class="tech-tag">Meta Ads</span>
+                                    <span class="tech-tag">AI Optimization</span>
+                                    <span class="tech-tag">Analytics</span>
+                                </div>
+                                
+                                <button class="cta-button" style="margin-top: 30px; width: 100%; justify-content: center;">
+                                    View Case Study <i class="fas fa-external-link-alt"></i>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1463,7 +2200,48 @@
                             <p>We're here to help you navigate the digital transformation journey. Whether you have a specific project in mind or just want to explore possibilities, our Nairobi team is ready to collaborate.</p>
                             
                             <div class="contact-details">
-                                <!-- Contact details here -->
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Our Office</h4>
+                                        <p>Unipen Apartments, Block B, 3rd Floor</p>
+                                        <p>Office No. 3BS, Argwings Kodhek Road</p>
+                                        <p>Hurlingham, Nairobi, Kenya</p>
+                                        <p><em>Next to Java House, Hurlingham</em></p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone-alt"></i>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Phone Numbers</h4>
+                                        <a href="tel:+254758724758">+254 758 724 758</a>
+                                        <a href="tel:+254780018990">+254 780 018 990</a>
+                                        <p>Mon-Fri, 8:00 AM - 6:00 PM EAT</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="contact-item">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div class="contact-text">
+                                        <h4>Email Address</h4>
+                                        <a href="mailto:kodexcreatives254@gmail.com">kodexcreatives254@gmail.com</a>
+                                        <p>Response within 24 hours guaranteed</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                             </div>
                         </div>
                         
@@ -1473,23 +2251,28 @@
                                 <div class="form-message" id="formMessage"></div>
                                 
                                 <div class="form-group">
-                                    <label for="name">Full Name</label>
-                                    <input type="text" id="name" class="form-control" placeholder="Enter your full name" required>
+                                    <label for="name">Full Name *</label>
+                                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="email">Email Address</label>
-                                    <input type="email" id="email" class="form-control" placeholder="Enter your email address" required>
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" required>
                                 </div>
                                 
                                 <div class="form-group">
                                     <label for="phone">Phone Number</label>
-                                    <input type="tel" id="phone" class="form-control" placeholder="Enter your phone number">
+                                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="Enter your phone number">
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="service">Service Interest</label>
-                                    <select id="service" class="form-control" required>
+                                    <label for="company">Company</label>
+                                    <input type="text" id="company" name="company" class="form-control" placeholder="Enter your company name">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="service">Service Interest *</label>
+                                    <select id="service" name="service" class="form-control" required>
                                         <option value="">Select a service</option>
                                         <option value="ai">AI & Machine Learning</option>
                                         <option value="software">Software Development</option>
@@ -1502,8 +2285,8 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label for="message">Project Details</label>
-                                    <textarea id="message" class="form-control" placeholder="Tell us about your project, challenges, and goals. How can we help you succeed?" required></textarea>
+                                    <label for="message">Project Details *</label>
+                                    <textarea id="message" name="message" class="form-control" placeholder="Tell us about your project, challenges, and goals. How can we help you succeed?" required></textarea>
                                 </div>
                                 
                                 <button type="submit" class="cta-button" id="submitBtn" style="width: 100%; justify-content: center;">
@@ -1524,7 +2307,7 @@
     <!-- Service Modal -->
     <div class="service-modal" id="serviceModal">
         <div class="modal-content">
-            <button class="modal-close" onclick="closeServiceModal()">&times;</button>
+            <button class="modal-close" onclick="closeServiceModal()" aria-label="Close modal">&times;</button>
             <div id="modalContent"></div>
         </div>
     </div>
@@ -1532,14 +2315,63 @@
     <!-- Case Study Modal -->
     <div class="case-study-modal" id="caseStudyModal">
         <div class="case-study-content">
-            <button class="modal-close" onclick="closeCaseStudy()">&times;</button>
+            <button class="modal-close" onclick="closeCaseStudy()" aria-label="Close case study">&times;</button>
             <div id="caseStudyContent"></div>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <!-- Footer content -->
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Kodex Creatives</h3>
+                    <p>Kenya's premier AI-driven creative agency. We build intelligent systems, develop custom software, and execute performance marketing strategies that transform businesses in the digital economy.</p>
+                    <p><strong>Founded:</strong> 2025</p>
+                    <p><strong>Location:</strong> Nairobi, Kenya</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <a href="#services" onclick="navigateTo('services', event)">AI Engineering & ML</a>
+                    <a href="#services" onclick="navigateTo('services', event)">Software Development</a>
+                    <a href="#services" onclick="navigateTo('services', event)">Business Automation</a>
+                    <a href="#services" onclick="navigateTo('services', event)">Digital Marketing</a>
+                    <a href="#services" onclick="navigateTo('services', event)">Data Analytics & BI</a>
+                    <a href="#services" onclick="navigateTo('services', event)">Creative Production</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <a href="#about" onclick="navigateTo('about', event)">About Us</a>
+                    <a href="#portfolio" onclick="navigateTo('portfolio', event)">Portfolio</a>
+                    <a href="#contact" onclick="navigateTo('contact', event)">Careers</a>
+                    <a href="#contact" onclick="navigateTo('contact', event)">Blog</a>
+                    <a href="#contact" onclick="navigateTo('contact', event)">Privacy Policy</a>
+                    <a href="#contact" onclick="navigateTo('contact', event)">Terms of Service</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <a href="mailto:kodexcreatives254@gmail.com">kodexcreatives254@gmail.com</a>
+                    <a href="tel:+254758724758">+254 758 724 758</a>
+                    <a href="tel:+254780018990">+254 780 018 990</a>
+                    <p>Unipen Apartments, Block B</p>
+                    <p>3rd Floor, Office No. 3BS</p>
+                    <p>Argwings Kodhek Road, Hurlingham</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 Kodex Creatives. All rights reserved. | AI-Powered Digital Solutions | Nairobi, Kenya</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -1720,8 +2552,78 @@
                 timeline: '16 weeks',
                 testimonial: 'Our new e-commerce platform exceeded all expectations. The AI recommendations alone increased our revenue by 40% in the first quarter.',
                 testimonialAuthor: 'CEO, Retail Client'
+            },
+            'marketing1': {
+                title: 'AI-Driven Marketing Campaign',
+                client: 'Kenyan Fintech Startup',
+                industry: 'Financial Technology',
+                challenge: 'High customer acquisition costs ($150+) and low conversion rates due to inefficient targeting and manual campaign management.',
+                solution: 'Implemented AI-powered marketing automation with dynamic audience segmentation and real-time bid optimization.',
+                results: [
+                    {metric: '65%', label: 'Lower Acquisition Cost'},
+                    {metric: '2,500+', label: 'Qualified Leads'},
+                    {metric: '40%', label: 'Higher Conversion Rate'},
+                    {metric: '3.5x', label: 'ROI Increase'}
+                ],
+                technologies: ['Google Ads AI', 'Meta Ads Manager', 'HubSpot', 'Custom Analytics Dashboard'],
+                timeline: '8 weeks',
+                testimonial: 'The AI-driven approach cut our customer acquisition costs by 65% while doubling our lead quality. Game-changing results.',
+                testimonialAuthor: 'Marketing Director, Fintech Client'
             }
         };
+
+        // Chatbot FAQ Data
+        const chatbotFAQ = {
+            'services': {
+                question: 'What services do you offer?',
+                answer: 'We offer AI Engineering & Machine Learning, Custom Software Development, Business Automation, Digital Marketing, Data Analytics, and Creative Production. Each service is designed to transform your digital presence with intelligent solutions.',
+                quickAction: 'services'
+            },
+            'pricing': {
+                question: 'How much do projects cost?',
+                answer: 'Project costs vary based on scope and complexity. AI projects start from $15,000, software development from $20,000, and marketing campaigns from $5,000/month. We provide detailed proposals after understanding your specific needs.',
+                quickAction: 'contact'
+            },
+            'timeline': {
+                question: 'How long do projects take?',
+                answer: 'Typical timelines: AI projects (8-12 weeks), software development (10-16 weeks), marketing campaigns (ongoing with 3-month minimum). We work in agile sprints to deliver value quickly.',
+                quickAction: null
+            },
+            'location': {
+                question: 'Where are you located?',
+                answer: 'Our office is at Unipen Apartments, Block B, 3rd Floor, Office No. 3BS, Argwings Kodhek Road, Hurlingham, Nairobi (next to Java House). We serve clients across Kenya and internationally.',
+                quickAction: 'contact'
+            },
+            'start': {
+                question: 'How do I start a project?',
+                answer: 'Start by contacting us via the form on our website, WhatsApp, or email. We\'ll schedule a free consultation to understand your needs and provide a tailored proposal.',
+                quickAction: 'contact'
+            },
+            'ai-chatbots': {
+                question: 'Do you offer AI chatbots/automation?',
+                answer: 'Yes! We build intelligent chatbots and automation systems that handle customer inquiries, lead generation, and process automation 24/7. These can integrate with your existing systems.',
+                quickAction: 'ai'
+            },
+            'websites': {
+                question: 'Do you build websites/e-commerce?',
+                answer: 'Absolutely! We create custom websites and e-commerce platforms with AI-powered features like product recommendations, personalized shopping, and intelligent search.',
+                quickAction: 'software'
+            },
+            'ads': {
+                question: 'Do you manage ads and social media?',
+                answer: 'Yes, we provide full-service digital marketing including AI-optimized ad campaigns, social media management, content strategy, and performance analytics.',
+                quickAction: 'marketing'
+            }
+        };
+
+        // Chatbot Quick Replies
+        const quickRepliesData = [
+            { text: 'Services', action: 'services' },
+            { text: 'Pricing', action: 'pricing' },
+            { text: 'Portfolio', action: 'portfolio' },
+            { text: 'Book a Call', action: 'book-call' },
+            { text: 'Talk to Human', action: 'whatsapp' }
+        ];
 
         // Initialize the website
         document.addEventListener('DOMContentLoaded', function() {
@@ -1737,6 +2639,7 @@
             initScrollEffects();
             initScrollReveal();
             initContactForm();
+            initChatbot();
             createAICircuit();
             handleHashChange();
             initStatsCounter();
@@ -1766,20 +2669,36 @@
                 });
             });
         });
-        
+
+        // Global Variables
+        let currentPage = 'home';
+        let isNavigating = false;
+        let scrollObserver = null;
+        let statsAnimated = false;
+        let aiCircuitElements = [];
+
         // Initialize scroll reveal system
         function initScrollReveal() {
-            const observer = new IntersectionObserver((entries) => {
+            // Disconnect previous observer if exists
+            if (scrollObserver) {
+                scrollObserver.disconnect();
+            }
+            
+            scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        const delay = entry.target.classList.contains('stagger-1') ? 100 : 
+                                    entry.target.classList.contains('stagger-2') ? 200 :
+                                    entry.target.classList.contains('stagger-3') ? 300 :
+                                    entry.target.classList.contains('stagger-4') ? 400 :
+                                    entry.target.classList.contains('stagger-5') ? 500 :
+                                    entry.target.classList.contains('stagger-6') ? 600 : 0;
+                        
                         setTimeout(() => {
                             entry.target.classList.add('visible');
-                        }, entry.target.classList.contains('stagger-1') ? 100 : 
-                           entry.target.classList.contains('stagger-2') ? 200 :
-                           entry.target.classList.contains('stagger-3') ? 300 :
-                           entry.target.classList.contains('stagger-4') ? 400 :
-                           entry.target.classList.contains('stagger-5') ? 500 :
-                           entry.target.classList.contains('stagger-6') ? 600 : 0);
+                            // Unobserve after animation
+                            scrollObserver.unobserve(entry.target);
+                        }, delay);
                     }
                 });
             }, {
@@ -1789,14 +2708,11 @@
             
             // Observe all fade-in elements
             document.querySelectorAll('.fade-in').forEach(el => {
-                observer.observe(el);
+                scrollObserver.observe(el);
             });
         }
         
         // Navigation with proper hash handling
-        let currentPage = 'home';
-        let isNavigating = false;
-        
         function navigateTo(page, event = null) {
             if (event) event.preventDefault();
             
@@ -1850,7 +2766,7 @@
                 updateActiveNavLink(page);
                 
                 // Reset scroll to top
-                window.scrollTo({ top: 0, behavior: 'instant' });
+                window.scrollTo({ top: 0, behavior: 'auto' });
                 
                 // Hide transition
                 setTimeout(() => {
@@ -1864,7 +2780,7 @@
                 setTimeout(initScrollReveal, 100);
                 
                 // Animate stats if on home page
-                if (page === 'home') {
+                if (page === 'home' && !statsAnimated) {
                     initStatsCounter();
                 }
             }, 400);
@@ -1901,6 +2817,15 @@
                     closeMobileMenu();
                 }
             });
+            
+            // Close modals on ESC
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeServiceModal();
+                    closeCaseStudy();
+                    closeChatbot();
+                }
+            });
         }
         
         // Close mobile menu
@@ -1912,13 +2837,15 @@
             menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
         }
         
-        // Initialize scroll effects
+        // Initialize scroll effects with throttling
         function initScrollEffects() {
             const header = document.getElementById('mainHeader');
             const scrollProgress = document.getElementById('scrollProgress');
             const backToTop = document.getElementById('backToTop');
             
-            window.addEventListener('scroll', function() {
+            let ticking = false;
+            
+            function updateScroll() {
                 // Header scroll effect
                 if (window.scrollY > 50) {
                     header.classList.add('header-scrolled');
@@ -1939,9 +2866,13 @@
                     backToTop.classList.remove('visible');
                 }
                 
-                // Animate stats when in view
-                if (window.scrollY < 500) {
-                    animateStats();
+                ticking = false;
+            }
+            
+            window.addEventListener('scroll', function() {
+                if (!ticking) {
+                    window.requestAnimationFrame(updateScroll);
+                    ticking = true;
                 }
             });
             
@@ -1953,11 +2884,47 @@
                     behavior: 'smooth'
                 });
             });
+            
+            // Parallax effect for floating objects
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                window.addEventListener('mousemove', function(e) {
+                    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+                    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+                    
+                    const wrappers = [
+                        document.getElementById('floatWrapper1'),
+                        document.getElementById('floatWrapper2'),
+                        document.getElementById('floatWrapper3'),
+                        document.getElementById('floatWrapper4'),
+                        document.getElementById('floatWrapper5')
+                    ];
+                    
+                    wrappers.forEach((wrapper, index) => {
+                        if (wrapper) {
+                            const speed = 0.5 + (index * 0.1);
+                            wrapper.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+                        }
+                    });
+                });
+            }
         }
         
-        // Animate hero stats
+        // Animate hero stats with IntersectionObserver
         function initStatsCounter() {
-            animateStats();
+            const statsSection = document.querySelector('.hero-stats');
+            if (!statsSection || statsAnimated) return;
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !statsAnimated) {
+                        animateStats();
+                        statsAnimated = true;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            observer.observe(statsSection);
         }
         
         function animateStats() {
@@ -1968,18 +2935,27 @@
                 const current = parseInt(stat.textContent.replace(/[^0-9]/g, '') || '0');
                 
                 if (current < target) {
-                    const increment = target / 50; // 50 frames
-                    let currentValue = current;
+                    const duration = 2000; // 2 seconds
+                    const startTime = performance.now();
+                    const startValue = current;
                     
-                    const timer = setInterval(() => {
-                        currentValue += increment;
-                        if (currentValue >= target) {
-                            stat.textContent = target + (stat.textContent.includes('%') ? '%' : '+');
-                            clearInterval(timer);
-                        } else {
+                    function updateValue(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        
+                        // Ease out quad
+                        const easeProgress = 1 - (1 - progress) * (1 - progress);
+                        const currentValue = startValue + (target - startValue) * easeProgress;
+                        
+                        if (progress < 1) {
                             stat.textContent = Math.floor(currentValue) + (stat.textContent.includes('%') ? '%' : '+');
+                            requestAnimationFrame(updateValue);
+                        } else {
+                            stat.textContent = target + (stat.textContent.includes('%') ? '%' : '+');
                         }
-                    }, 30);
+                    }
+                    
+                    requestAnimationFrame(updateValue);
                 }
             });
         }
@@ -2001,13 +2977,19 @@
             items.forEach(item => {
                 if (category === 'all' || item.getAttribute('data-category') === category) {
                     item.style.display = 'block';
-                    // Re-add animation
-                    setTimeout(() => {
-                        item.classList.add('visible');
-                    }, 100);
+                    // Reset animation state
+                    item.classList.remove('visible');
+                    // Re-observe for animation
+                    if (scrollObserver) {
+                        scrollObserver.observe(item);
+                    }
                 } else {
                     item.style.display = 'none';
                     item.classList.remove('visible');
+                    // Unobserve when hidden
+                    if (scrollObserver) {
+                        scrollObserver.unobserve(item);
+                    }
                 }
             });
         }
@@ -2069,12 +3051,17 @@
             content.innerHTML = serviceContent;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Focus trap
+            modal.setAttribute('tabindex', '0');
+            modal.focus();
         }
         
         function closeServiceModal() {
             const modal = document.getElementById('serviceModal');
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            modal.removeAttribute('tabindex');
         }
         
         // Case Study functions
@@ -2135,12 +3122,17 @@
             content.innerHTML = caseContent;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            // Focus trap
+            modal.setAttribute('tabindex', '0');
+            modal.focus();
         }
         
         function closeCaseStudy() {
             const modal = document.getElementById('caseStudyModal');
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
+            modal.removeAttribute('tabindex');
         }
         
         // Initialize contact form
@@ -2173,9 +3165,18 @@
                     const response = await fetch('https://formspree.io/f/xbjnnlyp', {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
                         },
-                        body: JSON.stringify(formData)
+                        body: JSON.stringify({
+                            name: formData.name,
+                            email: formData.email,
+                            phone: formData.phone,
+                            company: formData.company,
+                            service: formData.service,
+                            message: formData.message,
+                            _subject: `New Project Inquiry from ${formData.name}`
+                        })
                     });
                     
                     if (response.ok) {
@@ -2183,16 +3184,20 @@
                         showToast('Message sent successfully! We\'ll contact you within 24 hours.', 'success');
                         formMessage.innerHTML = '<i class="fas fa-check-circle"></i> Message sent successfully! We\'ll contact you within 24 hours.';
                         formMessage.className = 'form-message success';
+                        formMessage.style.display = 'block';
                         form.reset();
                     } else {
                         throw new Error('Form submission failed');
                     }
                 } catch (error) {
-                    // Fallback to WhatsApp
-                    const whatsappMessage = `New Project Inquiry from Kodex Creatives Website:%0A%0AName: ${formData.name}%0AEmail: ${formData.email}%0APhone: ${formData.phone}%0AService: ${formData.service}%0AMessage: ${formData.message}`;
+                    // Fallback to WhatsApp with proper encoding
+                    const whatsappMessage = `New Project Inquiry from Kodex Creatives Website:%0A%0AName: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}%0APhone: ${encodeURIComponent(formData.phone)}%0AService: ${encodeURIComponent(formData.service)}%0AMessage: ${encodeURIComponent(formData.message)}`;
                     const whatsappUrl = `https://wa.me/254758724758?text=${whatsappMessage}`;
                     
                     showToast('Form submission failed. Redirecting to WhatsApp...', 'error');
+                    formMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> Form submission failed. Please contact us directly via WhatsApp.';
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
                     
                     setTimeout(() => {
                         window.open(whatsappUrl, '_blank');
@@ -2224,9 +3229,19 @@
             }, 5000);
         }
         
-        // Create AI Circuit Background
+        // Create AI Circuit Background with debounced resize
         function createAICircuit() {
             const container = document.getElementById('aiCircuit');
+            if (!container) return;
+            
+            // Clear previous elements
+            aiCircuitElements.forEach(el => {
+                if (el.parentNode === container) {
+                    container.removeChild(el);
+                }
+            });
+            aiCircuitElements = [];
+            
             const width = window.innerWidth;
             const height = window.innerHeight;
             
@@ -2250,6 +3265,7 @@
                 line.style.transformOrigin = '0 0';
                 
                 container.appendChild(line);
+                aiCircuitElements.push(line);
             }
             
             // Create circuit nodes
@@ -2265,20 +3281,301 @@
                 node.style.animation = `pulse ${pulseDuration}s infinite alternate`;
                 
                 container.appendChild(node);
+                aiCircuitElements.push(node);
             }
         }
         
-        // Parallax effect for floating objects
-        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-            window.addEventListener('mousemove', function(e) {
-                const x = (e.clientX / window.innerWidth - 0.5) * 20;
-                const y = (e.clientY / window.innerHeight - 0.5) * 20;
-                
-                document.querySelectorAll('.floating-object').forEach((obj, index) => {
-                    const speed = 0.5 + (index * 0.1);
-                    obj.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
-                });
+        // Debounced resize handler for AI circuit
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(createAICircuit, 250);
+        });
+        
+        // Chatbot Implementation
+        let chatHistory = [];
+        let isChatOpen = false;
+        
+        function initChatbot() {
+            const toggleBtn = document.getElementById('chatbotToggle');
+            const closeBtn = document.getElementById('chatbotClose');
+            const sendBtn = document.getElementById('chatbotSend');
+            const inputField = document.getElementById('chatbotInput');
+            const chatWindow = document.getElementById('chatbotWindow');
+            const messagesContainer = document.getElementById('chatbotMessages');
+            const quickRepliesContainer = document.getElementById('quickReplies');
+            
+            // Load chat history from localStorage
+            try {
+                const savedHistory = localStorage.getItem('kodexChatHistory');
+                if (savedHistory) {
+                    chatHistory = JSON.parse(savedHistory);
+                    renderChatHistory();
+                }
+            } catch (e) {
+                console.warn('Failed to load chat history:', e);
+            }
+            
+            // Initial bot message if no history
+            if (chatHistory.length === 0) {
+                addBotMessage("Hello! I'm Kodex Assistant. How can I help you today? You can ask about our services, pricing, or browse our portfolio.");
+                updateQuickReplies();
+            }
+            
+            // Toggle chatbot
+            toggleBtn.addEventListener('click', function() {
+                isChatOpen = !isChatOpen;
+                chatWindow.hidden = !isChatOpen;
+                if (isChatOpen) {
+                    chatWindow.classList.add('active');
+                    chatWindow.setAttribute('aria-hidden', 'false');
+                    inputField.focus();
+                } else {
+                    chatWindow.classList.remove('active');
+                    chatWindow.setAttribute('aria-hidden', 'true');
+                }
             });
+            
+            // Close chatbot
+            closeBtn.addEventListener('click', function() {
+                isChatOpen = false;
+                chatWindow.classList.remove('active');
+                chatWindow.hidden = true;
+                chatWindow.setAttribute('aria-hidden', 'true');
+            });
+            
+            // Send message on button click
+            sendBtn.addEventListener('click', function() {
+                sendMessage();
+            });
+            
+            // Send message on Enter key
+            inputField.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            
+            function sendMessage() {
+                const message = inputField.value.trim();
+                if (!message) return;
+                
+                // Add user message
+                addUserMessage(message);
+                inputField.value = '';
+                
+                // Show typing indicator
+                showTypingIndicator();
+                
+                // Process message after delay
+                setTimeout(() => {
+                    removeTypingIndicator();
+                    processUserMessage(message);
+                }, 1000 + Math.random() * 1000);
+            }
+            
+            function addUserMessage(text) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chat-message message-user';
+                messageDiv.textContent = text;
+                messagesContainer.appendChild(messageDiv);
+                chatHistory.push({ type: 'user', text: text, timestamp: new Date().toISOString() });
+                saveChatHistory();
+                scrollToBottom();
+            }
+            
+            function addBotMessage(text, quickAction = null) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chat-message message-bot';
+                messageDiv.textContent = text;
+                messagesContainer.appendChild(messageDiv);
+                chatHistory.push({ type: 'bot', text: text, quickAction: quickAction, timestamp: new Date().toISOString() });
+                saveChatHistory();
+                scrollToBottom();
+            }
+            
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'typing-indicator';
+                typingDiv.id = 'typingIndicator';
+                typingDiv.innerHTML = `
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                `;
+                messagesContainer.appendChild(typingDiv);
+                scrollToBottom();
+            }
+            
+            function removeTypingIndicator() {
+                const typingIndicator = document.getElementById('typingIndicator');
+                if (typingIndicator) {
+                    typingIndicator.remove();
+                }
+            }
+            
+            function processUserMessage(message) {
+                const lowerMessage = message.toLowerCase();
+                
+                // Check for FAQ matches
+                for (const [key, faq] of Object.entries(chatbotFAQ)) {
+                    if (lowerMessage.includes(key) || lowerMessage.includes(faq.question.toLowerCase())) {
+                        addBotMessage(faq.answer, faq.quickAction);
+                        updateQuickReplies();
+                        return;
+                    }
+                }
+                
+                // Check for service mentions
+                if (lowerMessage.includes('ai') || lowerMessage.includes('machine learning') || lowerMessage.includes('artificial intelligence')) {
+                    addBotMessage("We specialize in AI Engineering & Machine Learning. We build custom ML models, predictive analytics systems, and AI automation solutions. Would you like to learn more about our AI services?", 'ai');
+                } else if (lowerMessage.includes('software') || lowerMessage.includes('app') || lowerMessage.includes('development')) {
+                    addBotMessage("We offer full-stack Custom Software Development including web applications, mobile apps, and enterprise systems. Our solutions are scalable, secure, and tailored to your business needs.", 'software');
+                } else if (lowerMessage.includes('marketing') || lowerMessage.includes('ads') || lowerMessage.includes('social media')) {
+                    addBotMessage("Our AI-Powered Digital Marketing services include campaign optimization, social media management, and performance analytics. We help you reach the right audience with the right message.", 'marketing');
+                } else if (lowerMessage.includes('automation') || lowerMessage.includes('workflow')) {
+                    addBotMessage("We build Intelligent Business Automation systems that streamline your operations 24/7. From workflow automation to RPA, we help you reduce costs and increase efficiency.", 'automation');
+                } else if (lowerMessage.includes('website') || lowerMessage.includes('e-commerce') || lowerMessage.includes('online store')) {
+                    addBotMessage("Yes, we build custom websites and e-commerce platforms with AI features like personalized recommendations. Check out our portfolio for examples.", 'portfolio');
+                } else {
+                    // Default response
+                    addBotMessage("Thanks for your message! I can help you with information about our services, pricing, portfolio, or connect you with our team. What would you like to know?", null);
+                }
+                
+                updateQuickReplies();
+            }
+            
+            function updateQuickReplies() {
+                quickRepliesContainer.innerHTML = '';
+                quickRepliesData.forEach(reply => {
+                    const button = document.createElement('button');
+                    button.className = 'quick-reply';
+                    button.textContent = reply.text;
+                    button.addEventListener('click', function() {
+                        handleQuickReply(reply.action);
+                    });
+                    quickRepliesContainer.appendChild(button);
+                });
+            }
+            
+            function handleQuickReply(action) {
+                switch(action) {
+                    case 'services':
+                        addUserMessage('What services do you offer?');
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            addBotMessage(chatbotFAQ.services.answer, 'services');
+                            updateQuickReplies();
+                        }, 1000);
+                        break;
+                    case 'pricing':
+                        addUserMessage('How much do projects cost?');
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            addBotMessage(chatbotFAQ.pricing.answer, 'contact');
+                            updateQuickReplies();
+                        }, 1000);
+                        break;
+                    case 'portfolio':
+                        addUserMessage('Can I see your portfolio?');
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            addBotMessage("Sure! We have case studies showing our work in AI, software development, and digital marketing. Would you like me to open our portfolio section?", 'portfolio');
+                            updateQuickReplies();
+                        }, 1000);
+                        // Navigate to portfolio
+                        setTimeout(() => {
+                            navigateTo('portfolio');
+                            closeChatbot();
+                        }, 1500);
+                        break;
+                    case 'book-call':
+                        addUserMessage('I want to book a consultation call');
+                        showTypingIndicator();
+                        setTimeout(() => {
+                            removeTypingIndicator();
+                            addBotMessage("Great! Please fill out our contact form with your availability and we'll schedule a call within 24 hours.", 'contact');
+                            updateQuickReplies();
+                        }, 1000);
+                        // Navigate to contact
+                        setTimeout(() => {
+                            navigateTo('contact');
+                            closeChatbot();
+                        }, 1500);
+                        break;
+                    case 'whatsapp':
+                        const whatsappUrl = `https://wa.me/254758724758?text=${encodeURIComponent("Hello Kodex Creatives! I'd like to discuss a project.")}`;
+                        window.open(whatsappUrl, '_blank');
+                        addBotMessage("Opening WhatsApp for you to chat directly with our team!", null);
+                        break;
+                    case 'ai':
+                        openServiceModal('ai-detailed');
+                        closeChatbot();
+                        break;
+                    case 'software':
+                        openServiceModal('software-detailed');
+                        closeChatbot();
+                        break;
+                    case 'marketing':
+                        openServiceModal('marketing-detailed');
+                        closeChatbot();
+                        break;
+                    case 'automation':
+                        openServiceModal('automation-detailed');
+                        closeChatbot();
+                        break;
+                    case 'contact':
+                        navigateTo('contact');
+                        closeChatbot();
+                        break;
+                }
+            }
+            
+            function renderChatHistory() {
+                messagesContainer.innerHTML = '';
+                chatHistory.forEach(msg => {
+                    if (msg.type === 'user') {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'chat-message message-user';
+                        messageDiv.textContent = msg.text;
+                        messagesContainer.appendChild(messageDiv);
+                    } else if (msg.type === 'bot') {
+                        const messageDiv = document.createElement('div');
+                        messageDiv.className = 'chat-message message-bot';
+                        messageDiv.textContent = msg.text;
+                        messagesContainer.appendChild(messageDiv);
+                    }
+                });
+                scrollToBottom();
+            }
+            
+            function saveChatHistory() {
+                try {
+                    // Keep only last 50 messages
+                    if (chatHistory.length > 50) {
+                        chatHistory = chatHistory.slice(-50);
+                    }
+                    localStorage.setItem('kodexChatHistory', JSON.stringify(chatHistory));
+                } catch (e) {
+                    console.warn('Failed to save chat history:', e);
+                }
+            }
+            
+            function scrollToBottom() {
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }
+            
+            // Close chatbot function
+            window.closeChatbot = function() {
+                isChatOpen = false;
+                chatWindow.classList.remove('active');
+                chatWindow.hidden = true;
+                chatWindow.setAttribute('aria-hidden', 'true');
+            };
         }
     </script>
 </body>
